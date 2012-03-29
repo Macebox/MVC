@@ -1,0 +1,9 @@
+#Rewrite everything to index.php
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteBase /phpmvc/MVC/
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule (.*) index.php/$1 [NC,L]
+</IfModule>
