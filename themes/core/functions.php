@@ -60,6 +60,16 @@ function current_url()
 }
 
 /**
+*	Create an url
+*/
+
+function create_url($url)
+{
+	$mvc = CNocturnal::Instance();
+	return $mvc->request->CreateUrl($url);
+}
+
+/**
  * Create HTML for a navbar.
  */
 function getHTMLForNavigation($id)

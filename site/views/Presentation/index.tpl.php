@@ -21,7 +21,7 @@ Utöver det så fanns det inte många problem, möjligtvis att jag hade glömt bort h
 studentkontot via ftp, men det gick rätt snabbt att leta upp.
 </p>
 
-<img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>data/presentation/close_enough.png" alt="" style="width: 240px; height: 177px;" />
+<img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>site/data/presentation/close_enough.png" alt="" style="width: 240px; height: 177px;" />
 
 <h2>Kmom02: Grunden till ett MVC ramverk</h2>
 
@@ -95,7 +95,10 @@ Modeller i mappen /models/<br />
 Views i mappen /views/<br />
 Controllers i mappen /site/src/<br /> <br />
 
-Views-data(så som bilder etc.) i mappen /data/
+Views-data(så som bilder etc.) i mappen /data/ <br />
+
+https://github.com/Macebox/MVC/tree/v0.2.0
+
 </p>
 
-<img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>data/presentation/fuck_yeah.png" alt="" style="width: 229px; height: 210px;" />
+<img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>site/data/presentation/fuck_yeah.png" alt="" style="width: 229px; height: 210px;" />

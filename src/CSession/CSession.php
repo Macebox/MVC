@@ -58,4 +58,19 @@ class CSession
 	{
 		return isset($this->flash['messages']) ? $this->flash['messages'] : null;
 	}
+	
+	public function SetAuthenticatedUser($user)
+	{
+		$this->data['CMUser'] = $user;
+	}
+	
+	public function UnsetAuthenticatedUser($user)
+	{
+		unset($this->data['CMUser']);
+	}
+	
+	public function GetAuthenticatedUser()
+	{
+		return isset($this->data['CMUser'])?$this->data['CMUser']:false;
+	}
 }

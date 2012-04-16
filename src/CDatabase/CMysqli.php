@@ -36,13 +36,7 @@ class CMysqli implements IDBDriver
 				$query = 'SELECT '.$columnsSelected.' FROM '.$table;
 				if (count($equals)>0)
 				{
-					$query .= ' WHERE ';
-					foreach($equals as $col => $value)
-					{
-						$query .= $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\' AND ';
-					}
-					
-					$query = substr($query, 0, strlen($query)-4);
+					$query .= ' WHERE '.$this->getEquals($equals);
 				}
 				
 				$this->queries[] = $query;
@@ -114,13 +108,7 @@ class CMysqli implements IDBDriver
 				
 				if (count($equals)>0)
 				{
-					$query .= ' WHERE ';
-					foreach($equals as $col => $value)
-					{
-						$query .= $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\' AND ';
-					}
-					
-					$query = substr($query, 0, strlen($query)-4);
+					$query .= ' WHERE '.$this->getEquals($equals);
 				}
 				
 				$this->queries[] = $query;
@@ -178,5 +166,42 @@ class CMysqli implements IDBDriver
 		{
 			/*Error message*/
 		}
+	}
+	
+	private function getEquals($equals)
+	{
+		$query = '';
+		foreach($equals as $col => $value)
+		{
+			if (is_array($value))
+			{
+				if (!empty($col))
+				{
+					$column = $col;
+				}
+				$eq = '(';
+				foreach($value as $subcol => $subval)
+				{
+					if (is_array($subval))
+					{
+						$eq .= '('.$this->getEquals($subval).') OR ';
+					}
+					else
+					{
+						$eq .= $this->db->real_escape_string($subcol).'=\''.$this->db->real_escape_string($subval).'\' OR ';
+					}
+				}
+				$eq = substr($eq, 0, strlen($eq)-4).')';
+			}
+			else
+			{
+				$eq = $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\'';
+			}
+			$query .= $eq.' AND ';
+		}
+		
+		$query = substr($query, 0, strlen($query)-4);
+		
+		return $query;
 	}
 }

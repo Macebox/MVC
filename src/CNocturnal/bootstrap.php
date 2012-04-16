@@ -7,10 +7,10 @@
 */
 function autoload($aClassName)
 {
-	$classFile = "/src/{$aClassName}/{$aClassName}.php";
-	$file1 = MVC_SITE_PATH . $classFile;
-	$file2 = MVC_INSTALL_PATH . "/models/{$aClassName}/{$aClassName}.php";
-	$file3 = MVC_INSTALL_PATH . $classFile;
+	$classFile = "{$aClassName}/{$aClassName}.php";
+	$file1 = MVC_SITE_PATH		. "/controllers/{$classFile}";
+	$file2 = MVC_SITE_PATH		. "/models/{$classFile}";
+	$file3 = MVC_INSTALL_PATH	. "/src/{$classFile}";
 	if (is_file($file1))
 	{
 		require_once($file1);

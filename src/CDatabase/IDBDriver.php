@@ -2,6 +2,35 @@
 
 interface IDBDriver
 {
+	/*
+	*	<--- AND EXAMPLE --->
+	*	$equals =
+	*	array(
+	*		'column'	=> 'value',
+	*		'column2'	=> 'value2'
+	*		);
+	*	-----> WHERE column='value' AND column2='value2'
+	*
+	*	<--- OR EXAMPLE --->
+	*	$equals =
+	*	array(
+	*		'column'	=> 'value',
+	*		array(
+	*			'column2'	=> 'value2',
+	*			'column3'	=> 'value3',
+	*			array(
+	*				'column2' => 'value3'
+	*				)
+	*			)
+	*		);
+	*	-----> WHERE column='value' AND (column2='value2' OR column3='value3' OR (column2='value3'))
+	*
+	*
+	*
+	*
+	**/
+	
+	
 	public function Get($table, $columns, $equals);
 	
 	public function Insert($table, $columns);
