@@ -6,25 +6,20 @@
 */
 class CObject
 {
-	public $config;
-	public $request;
-	public $data;
-	public $database;
-	public $views;
-	public $session;
-
 	/**
 	 * Constructor
 	 */
-	protected function __construct()
+	protected function __construct($mvc = null)
 	{
-		$mvc = CNocturnal::Instance();
+		$mvc = !$mvc?CNocturnal::Instance():$mvc;
+		
 		$this->config   = &$mvc->config;
 		$this->request  = &$mvc->request;
 		$this->data     = &$mvc->data;
 		$this->database = &$mvc->database;
 		$this->views	= &$mvc->views;
 		$this->session	= &$mvc->session;
+		$this->user		= &$mvc->user;
 	}
 	
 	protected function RedirectTo($urlOrController=null, $method=null)

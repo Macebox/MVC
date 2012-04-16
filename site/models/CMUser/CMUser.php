@@ -2,9 +2,9 @@
 
 class CMUser extends CObject
 {
-	public function __construct()
+	public function __construct($mvc)
 	{
-		parent::__construct();
+		parent::__construct($mvc);
 	}
 	
 	public function Init()
