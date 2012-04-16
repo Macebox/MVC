@@ -4,21 +4,21 @@ class CRequest
 {
 	public function __construct()
 	{
-		$mvc = CMVC::Instance();
+		$mvc = CNocturnal::Instance();
 		if ($mvc->config['url_type']==1)
 		{
 			$this->cleanUrl = true;
 		}
 		else if ($mvc->config['url_type']==2)
 		{
-			$this->querystringUrl = true;
+			$this->queryStringUrl = true;
 		}
 	}
 	
 	public function Init($baseUrl = null)
 	{
 		$requestUri = $_SERVER['REQUEST_URI'];
-		$scriptName = $_SERVER['SCRIPT_NAME'];   
+		$scriptName = $_SERVER['SCRIPT_NAME'];
 	   
 		// Compare REQUEST_URI and SCRIPT_NAME as long they match, leave the rest as current request.
 		if (strpos($requestUri, ".php"))
@@ -62,14 +62,14 @@ class CRequest
 		$baseUrl       = !empty($baseUrl) ? $baseUrl : "{$parts['scheme']}://{$parts['host']}" . (isset($parts['port']) ? ":{$parts['port']}" : '') . rtrim(dirname($scriptName), '/');
 	   
 		// Store it
-		$this->base_url      = rtrim($baseUrl, '/') . '/';
+		$this->base_url		= rtrim($baseUrl, '/') . '/';
 		$this->current_url  = $currentUrl;
 		$this->request_uri  = $requestUri;
 		$this->script_name  = $scriptName;
 		$this->request      = $request;
-		$this->splits         = $splits;
-		$this->controller     = $controller;
-		$this->method         = $method;
+		$this->splits		= $splits;
+		$this->controller	= $controller;
+		$this->method		= $method;
 		$this->arguments    = $arguments;
 	}
 	
@@ -84,14 +84,19 @@ class CRequest
 		return $url;
 	}
 	
+	public function GetBaseUrl()
+	{
+		return 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'],0,strpos($_SERVER['SCRIPT_NAME'], 'index.php'));
+	}
+	
 	public function CreateUrl($url=null)
 	{
 		$prepend = $this->base_url;
-		if ($this->cleanUrl)
+		if (isset($this->cleanUrl) && $this->cleanUrl)
 		{
 			;
 		}
-		else if ($this->queryStringUrl)
+		else if (isset($this->queryStringUrl) && $this->queryStringUrl)
 		{
 			$prepend .= 'index.php?q=';
 		}
@@ -102,5 +107,3 @@ class CRequest
 		return $prepend . rtrim($url, '/');
 	}
 }
-
-?>

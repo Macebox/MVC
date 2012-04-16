@@ -1,1 +1,1 @@
-<?phpinterface IController{	public function Index();}?>
+<?phpinterface IController{	public function Index();}
