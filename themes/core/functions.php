@@ -105,3 +105,27 @@ function get_messages_from_session()
 	}
 	return $html;
 }
+
+/*
+* Login menu
+*
+**/
+
+function login_menu()
+{
+	$mvc = CNocturnal::Instance();
+	if($mvc->user->IsAuthenticated())
+	{
+		$items = "<a href='" . create_url('user/profile') . "'>" . $mvc->user->GetAcronym() . "</a> ";
+		if($mvc->user->InGroup($mvc->config['CMUser-Groups']['admin']['acronym']))
+		{
+			$items .= "<a href='" . create_url('acp') . "'>acp</a> ";
+		}
+		$items .= "<a href='" . create_url('user/logout') . "'>logout</a> ";
+	}
+	else
+	{
+		$items = "<a href='" . create_url('user/login') . "'>login</a> ";
+	}
+	return "<nav class=\"right\">$items</nav>";
+}

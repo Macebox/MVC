@@ -45,7 +45,7 @@ class CMUser extends CObject
 			/*Admin group*/
 			
 			$groupId = $this->database->Get('group',array('id'),array(
-				'acronym'	=> $this->config['CMUser-Groups'][0]['acronym']
+				'acronym'	=> $this->config['CMUser-Groups']['admin']['acronym']
 				)
 			);
 			$groupId = $groupId[0]['id'];
@@ -60,7 +60,7 @@ class CMUser extends CObject
 			/*User group*/
 			
 			$groupId = $this->database->Get('group',array('id'),array(
-				'acronym'	=> $this->config['CMUser-Groups'][1]['acronym']
+				'acronym'	=> $this->config['CMUser-Groups']['user']['acronym']
 				)
 			);
 			$groupId = $groupId[0]['id'];
@@ -97,7 +97,12 @@ class CMUser extends CObject
 			
 			foreach($tmpArray as $key => $val)
 			{
-				$user['groups'][$key] = $val['idGroup'];
+				$tmp = $this->database->Get('group','',array(
+					'id'	=> $val['idGroup'],
+					)
+				);
+				
+				$user['groups'][$tmp[0]['acronym']] = $tmp[0];
 			}
 			
 			$this->session->SetAuthenticatedUser($user);
@@ -124,5 +129,29 @@ class CMUser extends CObject
 	public function GetUserProfile()
 	{
 		return $this->session->GetAuthenticatedUser();
+	}
+	
+	public function InGroup($groupAcronym)
+	{
+		if ($this->IsAuthenticated())
+		{
+			$user = $this->session->GetAuthenticatedUser();
+			
+			return isset($user['groups'][$groupAcronym]);
+		}
+		
+		return FALSE;
+	}
+	
+	public function GetAcronym()
+	{
+		if ($this->IsAuthenticated())
+		{
+			$user = $this->session->GetAuthenticatedUser();
+			
+			return $user['acronym'];
+		}
+		
+		return null;
 	}
 }
