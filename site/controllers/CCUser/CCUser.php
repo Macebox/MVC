@@ -7,7 +7,7 @@ class CCUser extends CObject implements IController
 	public function __construct()
 	{
 		parent::__construct();
-		$this->userModel = new CMUser();
+		$this->userModel = $this->user;
 	}
 	
 	public function Index()

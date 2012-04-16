@@ -84,20 +84,6 @@ function getHTMLForNavigation($id)
 	return "<nav id='$id'>\n{$html}</nav>\n";
 }
 
-
-/**
- * Create HTML for navigation links among kmoms.
- */
-function getHTMLForKmomNavlinks($id)
-{
-	$mvc = CNocturnal::Instance();
-	foreach($mvc->config['navkmom'] as $key => $item)
-	{
-		@$html .= empty($item['url']) ? $item['text'] : "<a href='{$mvc->request->CreateUrl($item['url'])}'{$selected}>{$item['text']}</a>\n" ;
-	}
-	return "<nav id='$id'>\n{$html}</nav>\n";
-}
-
 /*
 *	
 *
