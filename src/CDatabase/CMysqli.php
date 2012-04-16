@@ -6,10 +6,12 @@ class CMysqli implements IDBDriver
 {
 	private $queries = array();
 	private $db = null;
+	private $dbName = null;
 	
 	public function __construct($host, $user, $password, $dbName)
 	{
 		$this->db = new Mysqli($host, $user, $password, $dbName);
+		$this->dbName = $dbName;
 	}
 	
 	public function GetQueries()
@@ -33,11 +35,13 @@ class CMysqli implements IDBDriver
 				{
 					$columnsSelected = $this->db->real_escape_string(implode(', ', $columns));
 				}
-				$query = 'SELECT '.$columnsSelected.' FROM '.$table;
+				$query = 'SELECT '.$columnsSelected.' FROM '.$this->dbName.'.'.$table;
 				if (count($equals)>0)
 				{
 					$query .= ' WHERE '.$this->getEquals($equals);
 				}
+				
+				echo $query.'<br />';
 				
 				$this->queries[] = $query;
 				
@@ -67,7 +71,7 @@ class CMysqli implements IDBDriver
 			}
 			else
 			{
-				$query = 'INSERT INTO '.$this->db->real_escape_string($table);
+				$query = 'INSERT INTO '.$this->dbName.'.'.$this->db->real_escape_string($table).' ';
 				if (count($columns)>0)
 				{
 					$cols = '';
@@ -85,7 +89,6 @@ class CMysqli implements IDBDriver
 				$this->queries[] = $query;
 				
 				$this->db->query($query);
-				
 			}
 		}
 		else
@@ -104,7 +107,7 @@ class CMysqli implements IDBDriver
 			}
 			else
 			{
-				$query = 'DELETE FROM '.$this->db->real_escape_string($table);
+				$query = 'DELETE FROM '.$this->dbName.'.'.$this->db->real_escape_string($table);
 				
 				if (count($equals)>0)
 				{
@@ -133,7 +136,7 @@ class CMysqli implements IDBDriver
 			else
 			{
 				
-				$query = 'UPDATE '.$table;
+				$query = 'UPDATE '.$this->dbName.'.'.$table;
 				
 				if (count($columns)>0)
 				{
