@@ -41,8 +41,6 @@ class CMysqli implements IDBDriver
 					$query .= ' WHERE '.$this->getEquals($equals);
 				}
 				
-				echo $query.'<br />';
-				
 				$this->queries[] = $query;
 				
 				if ($result = $this->db->query($query))

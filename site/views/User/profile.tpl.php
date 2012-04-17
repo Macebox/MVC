@@ -1,0 +1,1 @@
+<p>Du är medlem i följande grupper:<br /><?php foreach($user['groups'] as $group):?><?=$group['acronym']?> - <?=$group['name']?> <br /><?php endforeach; ?></p>

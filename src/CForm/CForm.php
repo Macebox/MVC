@@ -232,6 +232,13 @@ class CForm implements ArrayAccess {
     return $this;
   }
   
+  /**
+   * Get the value of a element
+   */
+  public function GetValue($key) {
+    return (isset($_POST[$key])) ? $_POST[$key] : null;
+  }
+  
 
   /**
    * Set validation to a form element
@@ -281,7 +288,7 @@ EOD;
   public function GetHTMLForElements() {
     $html = null;
     foreach($this->elements as $element) {
-      $html .= $element->GetHTML();
+			$html .= $element->GetHTML();
     }
     return $html;
   }
