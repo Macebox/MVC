@@ -28,7 +28,7 @@ class CDatabase implements IDBDriver
 		return $this->db->GetQueries();
 	}
 	
-	public function Get($table, $columns=array(), $equals=array())
+	public function Get($table, $columns=array(), $equals=array(), $order=null, $asc=true)
 	{
 		if (!empty($this->db))
 		{
@@ -39,7 +39,7 @@ class CDatabase implements IDBDriver
 			else
 			{
 				CDatabase::$numQueries += 1;
-				return $this->db->Get($table, $columns, $equals);
+				return $this->db->Get($table, $columns, $equals, $order, $asc);
 			}
 		}
 		else

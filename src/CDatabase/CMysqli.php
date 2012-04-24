@@ -19,7 +19,7 @@ class CMysqli implements IDBDriver
 		return $this->queries;
 	}
 	
-	public function Get($table, $columns, $equals)
+	public function Get($table, $columns, $equals, $order, $asc)
 	{
 		$ret = array();
 		if (!empty($this->db))
@@ -39,6 +39,25 @@ class CMysqli implements IDBDriver
 				if (count($equals)>0)
 				{
 					$query .= ' WHERE '.$this->getEquals($equals);
+				}
+				
+				if (!empty($order))
+				{
+					$query .= ' ORDER BY ';
+					if (is_array($order))
+					{
+						foreach($order as $value)
+						{
+							$query .= $value.', ';
+						}
+						$query = substr($query, 0, strlen($query)-2);
+					}
+					else
+					{
+						$query .= $order;
+					}
+					$query .= ' '.($asc?'ASC':'DESC');
+					
 				}
 				
 				$this->queries[] = $query;

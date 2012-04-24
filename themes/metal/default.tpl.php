@@ -42,7 +42,7 @@
   <header id="header">
     <div id="banner">
       <a href="<?=CNocturnal::Instance()->request->CreateUrl('index')?>">
-        <img class="site-logo" src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/img/trollface.jpg" alt="logo" width="80" height="80" />
+        <img class="site-logo" src="<?=$themeUrl?>/img/trollface.jpg" alt="logo" width="80" height="80" />
       </a>
       <p class="site-title">Nocturnal</p>
       <p class="site-slogan">Här jobbas det..</p>

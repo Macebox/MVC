@@ -326,7 +326,10 @@ EOD;
       }
     } else if(isset($_SESSION['form-validation-failed'])) {
       foreach($_SESSION['form-validation-failed'] as $key => $val) {
-        $this[$key]['value'] = $val['value'];
+		if (!empty($val['value']))
+		{
+			$this[$key]['value'] = $val['value'];
+		}
         if(isset($val['validation_messages'])) {
           $this[$key]['validation_messages'] = $val['validation_messages'];
           $this[$key]['validation-pass'] = false;

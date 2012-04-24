@@ -18,13 +18,13 @@ function get_debug()
 		$html = "<h2>Debug:</h2>";
 		if (isset($mvc->config['debug']['mvc']) && $mvc->config['debug']['mvc'])
 		{
-			$html .= "<h3>MVC:</h3><hr><p>The content of the config array:</p><pre>" . htmlentities(print_r($mvc->config, true)) . "</pre>";
-			$html .= "<hr><p>The content of the data array:</p><pre>" . htmlentities(print_r($mvc->data, true)) . "</pre>";
-			$html .= "<hr><p>The content of the request array:</p><pre>" . htmlentities(print_r($mvc->request, true)) . "</pre>";
+			$html .= "<h3>MVC:</h3><p>The content of the config array:</p><pre>" . htmlentities(print_r($mvc->config, true)) . "</pre>";
+			$html .= "<h3>The content of the data array:</h3><pre>" . htmlentities(print_r($mvc->data, true)) . "</pre>";
+			$html .= "<h3>The content of the request array:</h3><pre>" . htmlentities(print_r($mvc->request, true)) . "</pre>";
 		}
 		if (isset($mvc->config['debug']['db-num-queries']) && $mvc->config['debug']['db-num-queries'])
 		{
-			$html .= "<h3>Database:</h3><hr><p>Database made " . $mvc->database->GetNumQueries() . " queries.</p><p>Queries:<br />";
+			$html .= "<h3>Database:</h3><p>Database made " . $mvc->database->GetNumQueries() . " queries.</p><p>Queries:<br />";
 			foreach($mvc->database->GetQueries() as $key => $val)
 			{
 				$html .= $val."<br />";
@@ -110,6 +110,7 @@ function get_messages_from_session()
 * Login menu
 *
 **/
+
 
 function get_gravatar($size=null)
 {
