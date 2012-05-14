@@ -141,3 +141,7 @@ function login_menu()
 function esc($str) {
   return htmlEnt($str);
 }
+
+function filter_data($data, $filter) {
+  return CMContent::Filter($data, $filter);
+}

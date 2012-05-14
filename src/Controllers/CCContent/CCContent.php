@@ -40,6 +40,9 @@ class CCContent extends CObject implements IController
 			'type'		=> new CFormElementText('type', array(
 				'value'		=> $content['type'],
 				)),
+			'filter'	=> new CFormElementText('filter', array(
+				'value'		=> $content['filter'],
+				)),
 			$save		=> new CFormElementSubmit($save, array(
 				'callback'		=> array($this, 'DoSave'),
 				'callback-args'	=> array($content),
@@ -74,14 +77,16 @@ class CCContent extends CObject implements IController
 		);
 	}
 	
-	public function DoSave($form, $content) {
-		$content['id']    = $form['id']['value'];
-		$content['title'] = $form['title']['value'];
-		$content['key']   = $form['key']['value'];
-		$content['data']  = $form['data']['value'];
-		$content['type']  = $form['type']['value'];
-    return $content->Save();
-  }
+	public function DoSave($form, $content)
+	{
+		$content['id']    	= $form['id']		['value'];
+		$content['title'] 	= $form['title']	['value'];
+		$content['key']   	= $form['key']		['value'];
+		$content['data']  	= $form['data']		['value'];
+		$content['type']  	= $form['type']		['value'];
+		$content['filter']	= $form['filter']	['value'];
+		return $content->Save();
+	}
 	
 	public function Init()
 	{
