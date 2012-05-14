@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Shojumaru");
+a:4:{s:4:"root";s:55:"C:\wamp\www\phpmvc\MVC/themes/core/style/style.less.css";s:8:"compiled";s:3231:"@import url("http://fonts.googleapis.com/css?family=Shojumaru");
 html { overflow-y:scroll; }
 body {
   background-color:#ffffff;
@@ -167,3 +167,4 @@ ul li { margin:0px; }
 .error { color:red; }
 .success { color:blue; }
 .info { color:green; }
+";s:5:"files";a:1:{s:55:"C:\wamp\www\phpmvc\MVC\themes\core\style\style.less.css";i:1335335592;}s:7:"updated";i:1335335596;}

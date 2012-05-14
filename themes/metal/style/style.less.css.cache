@@ -1,18 +1,18 @@
-@import url("http://fonts.googleapis.com/css?family=Shojumaru");
+a:4:{s:4:"root";s:56:"C:\wamp\www\phpmvc\MVC/themes/metal/style/style.less.css";s:8:"compiled";s:3253:"@import url("http://fonts.googleapis.com/css?family=Shojumaru");
 html { overflow-y:scroll; }
 body {
-  background-color:#ffffff;
-  color:#333333;
+  background-color:black;
+  color:gray;
 }
 #above {
   border-bottom:1px solid #eeeeee;
   margin-bottom:4px;
   padding-left:1em;
-  color:#333333;
+  color:gray;
   font-size:0.7em;
 }
 #above a {
-  color:#454545;
+  color:white;
   font-size:10px;
   text-decoration:none;
 }
@@ -22,19 +22,19 @@ body {
   padding:1em;
   width:800px;
   background-color:;
-  border:1px solid #999999;
+  border:1px solid gray;
   border-radius:10px;
 }
 #main { min-height:20em; }
 #footer { font-size:0.9em; }
 #main a {
-  color:#454545;
+  color:white;
   text-decoration:none;
   font-size:13px;
 }
 #main a:hover { color:gray; }
 #footer a {
-  color:#454545;
+  color:white;
   font-size:13px;
 }
 #footer a:hover { color:gray; }
@@ -66,22 +66,23 @@ body {
   font-family:arial;
   font-weight:bold;
   padding:2px 8px;
-  background:#abcdef;
+  background:#454545;
   border:2px solid #999999;
 }
 #navbar a {
   padding:6px 8px;
   text-decoration:none;
   border:2px solid transparent;
-  color:#ffffff;
+  color:gray;
 }
 #navbar a:hover, #navbar a.selected {
-  background:#abbacd;
+  background:gray;
   border:2px solid #666666;
+  color:#454545;
 }
 h1 { text-transform:uppercase; }
-h1, h2, h3 { border-bottom:1px solid #dddddd; }
-a, a:visited { color:#a84c00; }
+h1, h2, h3 { border-bottom:1px solid gray; }
+a, a:visited { color:#454545; }
 figure {
   display:table;
   width:1px;
@@ -95,7 +96,7 @@ img, figcaption {
 a figcaption, figcaption {
   font-style:italic;
   font-size:smaller;
-  color:#666666;
+  color:#454545;
 }
 figure.right { margin-right:0; }
 figure.top { margin-top:0; }
@@ -105,11 +106,11 @@ figure.fullwidth {
 }
 a:hover figure {
   background-color:#eeeeee;
-  border:1px solid #999999;
+  border:1px solid gray;
 }
 .byline {
   clear:both;
-  border-top:1px solid #999999;
+  border-top:1px solid gray;
   margin-top:2em;
   padding:1em;
   color:#666666;
@@ -121,7 +122,7 @@ a:hover figure {
 .smallText { font-size:9px; }
 .gbMsg {
   background:transparent;
-  border:1px solid #999999;
+  border:1px solid gray;
   margin-bottom:0.5em;
   padding:0.5em;
   border-radius:10px;
@@ -139,20 +140,21 @@ a:hover figure {
   font-size:12px;
   padding-left:10px;
   padding-right:10px;
-  border-bottom:1px solid #999999;
+  border-bottom:1px solid gray;
   padding-bottom:10px;
   margin-bottom:0;
 }
 input {
-  background:#abcdef;
+  background:#454545;
   border:1px solid transparent;
   border-radius:10px;
   padding-left:10px;
   padding-right:10px;
+  color:white;
 }
-input:hover { border:1px solid #a04545; }
+input:hover { border:1px solid #80804c; }
 textarea {
-  background:#abcdef;
+  background:#454545;
   border:1px solid transparent;
   border-radius:10px;
   padding:5px;
@@ -161,9 +163,11 @@ textarea {
   min-height:100px;
   max-height:100px;
 }
-textarea:hover { border:1px solid #a04545; }
+textarea:hover { border:1px solid #80804c; }
 .validation-message { font-size:10px; }
 ul li { margin:0px; }
 .error { color:red; }
 .success { color:blue; }
 .info { color:green; }
+.notice { font-size:10px; }
+";s:5:"files";a:1:{s:56:"C:\wamp\www\phpmvc\MVC\themes\metal\style\style.less.css";i:1336045730;}s:7:"updated";i:1336045732;}

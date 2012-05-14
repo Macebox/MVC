@@ -1,0 +1,180 @@
+/** 
+ * My own style, based on HTML5Boilerplate standard style.
+ */
+@import url(../css/style.css);
+@import url(http://fonts.googleapis.com/css?family=Shojumaru);
+
+
+/**
+ * Structure
+ */
+html {
+  overflow-y:scroll;
+}
+
+body {
+  background-color:#fff;
+  color:#333;
+}
+
+#above {
+  border-bottom:1px solid #eee;
+  margin-bottom:4px;
+  padding-left:1em;
+  color:#333;
+  font-size:0.7em;
+}
+
+#header,
+#main,
+#footer {
+  margin:8px auto;
+  padding:1em;
+  width:800px;
+  background-color:#fff;
+  border:1px solid #999;
+  border-radius: 10px;
+} 
+
+#main {
+  min-height:20em;
+}
+
+#footer {
+  font-size:0.9em;
+}
+
+#footer,
+#footer a {color:#666;}
+#footer a:hover {color:#333; text-decoration:none;}
+
+#banner {
+  display:table;
+  margin-bottom:10px;
+}
+
+.site-logo,
+.site-title,
+.site-slogan {
+  display:table-cell;
+  width:inherit;
+  vertical-align:middle;
+  text-align:left;
+}
+
+.site-logo {}
+.site-title {
+  font-family: 'Shojumaru', cursive;
+  line-height:0;
+  font-size:3em;
+  padding-left:20px;
+  color:#333;
+  text-shadow:#ccc 4px -4px 4px;
+}
+.site-slogan {
+  font-family: 'Shojumaru', cursive;
+  padding-left:20px;
+  font-style:italic;
+}
+
+
+/**
+ * Navbar
+ */
+#navbar {
+  font-family: arial;
+  font-weight: bold;
+  padding: 2px 8px;
+  background:#ABCDEF;
+  border:2px solid #999;
+}
+#navbar a {padding:6px 8px;text-decoration:none;border:2px solid transparent;color:#fff;}
+#navbar a:hover,
+#navbar a.selected
+{background:#ABBACD;border:2px solid #666;}
+
+
+/**
+ * Fonts
+ */
+h1{text-transform:uppercase;}
+h1,h2{
+  border-bottom:1px solid #dddddd;
+} 
+
+
+/**
+ * Links
+ */
+a,
+a:visited {
+  color:#A84C00;
+}
+
+
+/**
+ * Figure and images
+ */
+figure {
+  display: table;
+  width:1px;
+  border: 2px solid #eee;
+  margin:1em;
+  padding:2px;
+}
+
+img, figcaption {
+  display: table-row;
+  vertical-align: bottom;
+}
+
+a figcaption,
+figcaption {
+  font-style:italic;
+  font-size:smaller;
+  color:#666;
+}
+
+figure.right{margin-right:0;}
+figure.top{margin-top:0;}
+figure.fullwidth{margin-left:0;margin-right:0;}
+
+a:hover figure {
+  background-color:#eee;
+  border:2px solid #999;
+}
+
+
+/**
+ * byline & signature
+ */
+.byline {
+  clear: both;
+  border-top: 1px dashed #999;
+  margin-top:2em;
+  padding: 1em;
+  color: #666;
+  font-size: smaller;
+  font-style:italic;
+  height: 130px;
+}
+
+.byline img {padding:2px;outline:#999 groove 1px;}
+
+
+/**
+ * Misc classes
+ */
+.right {float:right;} 
+
+.smallText {font-size: 9px;}
+
+.guestbookText
+{
+	width: 350px;
+	height: 150px;
+	min-width: 350px;
+	max-width: 350px;
+	min-height: 150px;
+	max-height: 150px;
+}
