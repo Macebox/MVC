@@ -1,13 +1,35 @@
 <?php
 
-class CMUser extends CObject
+class CMUser extends CObject implements IModule
 {
-	public function __construct($mvc)
+	public function __construct($mvc=null)
 	{
 		parent::__construct($mvc);
 	}
 	
-	public function Init()
+	public function Manage($action=null)
+	{
+		switch($action)
+		{
+			case 'install':
+			{
+				if ($this->Init())
+				{
+					return array('success', 'Successfully created the database tables and created a default admin user as root:root and an ordinary user as doe:doe.');
+				}
+				else
+				{
+					return array('error', 'Unable to create database tables(they might already be installed).');
+				}
+			} break;
+			
+			default:
+				throw new Exception('Unsupported action for this module.');
+				break;
+		}
+	}
+	
+	private function Init()
 	{
 		/* User */
 		$this->database->RunQuery(
@@ -21,7 +43,7 @@ class CMUser extends CObject
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `acronym` (`acronym`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;");
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;", true);
 		
 		/* Group */
 		$this->database->RunQuery(
@@ -31,7 +53,7 @@ class CMUser extends CObject
   `name` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;");
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;", true);
 		
 		/* User2Group */
 		$this->database->RunQuery(
@@ -40,7 +62,7 @@ class CMUser extends CObject
   `idGroup` int(11) NOT NULL,
   `created` datetime NOT NULL,
   KEY `idUser` (`idUser`,`idGroup`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;", true);
 		
 		$dateTime = date('o-m-d H:i:s');
 		if (isset($this->config['CMUser-Groups']))
@@ -113,8 +135,9 @@ class CMUser extends CObject
 				)
 			);
 			
-			$this->session->AddMessage('notice', 'Successfully created a default admin user as root:root.');
+			return true;
 		}
+		return false;
 	}
 	
 	public function Login($acronymOrEmail, $password)

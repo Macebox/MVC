@@ -108,10 +108,13 @@ class CDatabase implements IDBDriver
 		}
 	}
 	
-	public function RunQuery($q)
+	public function RunQuery($q, $secure=false)
 	{
-		CNocturnal::Instance()->session->AddMessage('notice','The query: "'.$q.'" was run without protection.');
-		return $this->db->RunQuery($q);
+		if (!$secure)
+		{
+			CNocturnal::Instance()->session->AddMessage('notice','The query: "'.$q.'" was run without protection.');
+		}
+		return $this->db->RunQuery($q, $secure);
 	}
 	
 	public function getLastId()

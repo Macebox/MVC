@@ -41,7 +41,7 @@ interface IDBDriver
 	
 	public function GetQueries();
 	
-	public function RunQuery($q);
+	public function RunQuery($q, $secure=false);
 	
 	public function getLastId();
 }

@@ -19,7 +19,7 @@ class CMysqli implements IDBDriver
 		return $this->queries;
 	}
 	
-	public function RunQuery($q)
+	public function RunQuery($q, $secure=false)
 	{
 		return $this->db->query($q);
 	}
