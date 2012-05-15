@@ -3,4 +3,11 @@
 
 <p>Download:</p>
 
+<p>git clone git://github.com/macebox/MVC.git</p>
+<a target="_blank" href="https://github.com/macebox/MVC">Source</a>
+
 <h2>Install:</h2>
+
+<p>cd MVC; chmod 777 site/Data</p>
+
+You also need to <a href="<?=create_url('modules/install')?>">install</a> some modules.
