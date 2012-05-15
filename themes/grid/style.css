@@ -180,7 +180,6 @@ body {
   background-color:#05a696;
   font:100.01% / 1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-body:hover { background:#05a696; }
 #outer-wrap-header {
   height:88px;
   margin-top:11px;
@@ -446,3 +445,4 @@ a:focus {
   padding-bottom:10px;
   margin-bottom:0;
 }
+.strike { text-decoration:line-through; }

@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:49:"C:\wamp\www\phpmvc\MVC/themes/grid/style.less.css";s:8:"compiled";s:9724:"@import url("http://fonts.googleapis.com/css?family=Shojumaru");
+a:4:{s:4:"root";s:49:"C:\wamp\www\phpmvc\MVC/themes/grid/style.less.css";s:8:"compiled";s:9731:"@import url("http://fonts.googleapis.com/css?family=Shojumaru");
 body {
   width:100%;
   *zoom:1;
@@ -180,7 +180,6 @@ body {
   background-color:#05a696;
   font:100.01% / 1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-body:hover { background:#05a696; }
 #outer-wrap-header {
   height:88px;
   margin-top:11px;
@@ -446,4 +445,5 @@ a:focus {
   padding-bottom:10px;
   margin-bottom:0;
 }
-";s:5:"files";a:2:{s:49:"C:\wamp\www\phpmvc\MVC\themes\grid\style.less.css";i:1337094374;s:73:"C:\wamp\www\phpmvc\MVC\themes\grid\semantic.gs\stylesheets\less\grid.less";i:1337094374;}s:7:"updated";i:1337094448;}
+.strike { text-decoration:line-through; }
+";s:5:"files";a:2:{s:49:"C:\wamp\www\phpmvc\MVC\themes\grid\style.less.css";i:1337125696;s:73:"C:\wamp\www\phpmvc\MVC\themes\grid\semantic.gs\stylesheets\less\grid.less";i:1337097895;}s:7:"updated";i:1337125698;}

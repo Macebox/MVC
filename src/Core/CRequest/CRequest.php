@@ -15,7 +15,7 @@ class CRequest
 		}
 	}
 	
-	public function Init($baseUrl = null)
+	public function Init($baseUrl = null, $routing=null)
 	{
 		$requestUri = $_SERVER['REQUEST_URI'];
 		$scriptName = $_SERVER['SCRIPT_NAME'];
@@ -34,6 +34,11 @@ class CRequest
 		else
 		{
 			$request = substr($_SERVER['REQUEST_URI'], strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'))+1);
+		}
+		
+		if (is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled'])
+		{
+			$request = $routing[$request]['url'];
 		}
 	 
 		// Remove the ?-part from the query when analysing controller/metod/arg1/arg2

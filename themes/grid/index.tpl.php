@@ -14,7 +14,7 @@
     <div id='header'>
       <div id='login-menu'><?=login_menu()?></div>
       <div id='banner'>
-        <a href='<?=base_url()?>'><img id='site-logo' src="<?=$themeUrl?><?=$logo?>" alt='logo' width="<?=$logo_width?>" height="<?=$logo_height?>" /></a>
+        <a href='<?=base_url()?>'><img id='site-logo' src="<?=$themeParentUrl?><?=$logo?>" alt='logo' width="<?=$logo_width?>" height="<?=$logo_height?>" /></a>
         <span id='site-title'><a href='<?=base_url()?>'><?=$header?></a></span>
         <span id='site-slogan'><?=$slogan?></span>
       </div>

@@ -168,7 +168,6 @@ label{font-size:smaller;}
 */
 html{background-color:@bgcolor2;}
 body{margin:0;padding:0;color:@color;background-color:@bgcolor2;font:100.01%/1.375 @font-family-helvetica;
-  &:hover{background:@bgcolor2;}
 } 
 
 
@@ -348,3 +347,5 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
   padding-bottom: 10px;
   margin-bottom: 0;
 }
+
+.strike {text-decoration: line-through;}

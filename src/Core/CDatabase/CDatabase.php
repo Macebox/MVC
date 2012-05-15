@@ -99,7 +99,7 @@ class CDatabase implements IDBDriver
 			else
 			{
 				CDatabase::$numQueries += 1;
-				$this->db->Update($table, $columns, $equals);
+				return $this->db->Update($table, $columns, $equals);
 			}
 		}
 		else

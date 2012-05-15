@@ -12,7 +12,7 @@ class CCContent extends CObject implements IController
 		$content = new CMContent();
 		$this->views->SetTitle('Content Controller');
 		$this->views->AddView('Content/index.tpl.php', array(
-			'contents'	=> $content->ListAll(),
+			'contents'	=> $content->ListAll(null),
 			),
 		'primary'
 		);
@@ -27,7 +27,8 @@ class CCContent extends CObject implements IController
 	{
 		$content	= new CMContent($id);
 		$save = isset($content['id'])? 'save' : 'create';
-		$form = new CForm(array('name'=>'editForm', 'action'=>$this->request->CreateUrl('content/edit')),array(
+		$enableRemove = (!isset($content['deleted']));
+		$form = new CForm(array('name'=>'editForm', 'action'=>$this->request->CreateUrl("content/edit/{$id}")),array(
 			'title'		=> new CFormElementText('title', array(
 				'value'		=> $content['title'],
 				)),
@@ -48,6 +49,7 @@ class CCContent extends CObject implements IController
 				'callback'		=> array($this, 'DoSave'),
 				'callback-args'	=> array($content),
 				)),
+			'remove'	=> (($save=='save')?new CFormElementSubmit('Remove', array('callback' => array($this, 'DoRemove'),'callback-args' => array($content),'disabled'=>($enableRemove?null:'disabled'))):null),
 			'id'		=> new CFormElementHidden('id', array(
 				'value'		=> $content['id'],
 				)),
@@ -65,7 +67,7 @@ class CCContent extends CObject implements IController
 		}
 		else if ($status === true)
 		{
-			$this->RedirectToController("edit/{$content['id']}");
+			$this->RedirectToController("edit/{$id}");
 		}
 		
 		$title = isset($id) ? 'Edit' : 'Create';
@@ -90,10 +92,18 @@ class CCContent extends CObject implements IController
 		return $content->Save();
 	}
 	
-	public function Init()
+	public function DoRemove($form, $content)
 	{
-		$content = new CMContent();
-		$content->Init();
-		$this->RedirectToController();
+		$content['id'] = $form['id']['value'];
+		if ($content->Remove())
+		{
+			$this->session->AddMessage('success', 'Succesfully removed the content.');
+			$this->RedirectToController('index');
+		}
+		else
+		{
+			$this->session->AddMessage('error', 'Unable to remove content.');
+			$this->RedirectToController("edit/{$form[$id]}");
+		}
 	}
 }

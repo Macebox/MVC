@@ -242,10 +242,4 @@ class CCUser extends CObject implements IController
 		
 		$this->RedirectToController('profile');
 	}
-	
-	public function Init()
-	{
-		$this->user->Init();
-		$this->RedirectToController();
-	}
 }

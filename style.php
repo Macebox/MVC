@@ -62,19 +62,65 @@ function auto_compile_less($less_fname, $css_fname, $cache_ext='.cache') {
   return false;
 }
 
+$error = null;
+$cssFiles = array();
 
-// Compile and output the resulting css-file, use caching whenever suitable.
-$less = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style.less.css";
-$css  = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style.css";
-$cache_extension = '.cache';
-
-$changed = auto_compile_less($less, $css, $cache_extension);
 $time = mktime(0,0,0,21,5,1980);
 
-if(!$changed && isset($_SERVER['If-Modified-Since']) && strtotime($_SERVER['If-Modified-Since']) >= $time){ 
-  header("HTTP/1.0 304 Not Modified"); 
-} else { 
-  header('Content-type: text/css'); 
-  header('Last-Modified: ' . gmdate("D, d M Y H:i:s",$time) . " GMT"); 
-  readfile($css); 
+		
+$themePath    = MVC_INSTALL_PATH . '/' . $mvc->config['theme']['path'];
+		
+if(isset($mvc->config['theme']['parent']))
+{
+	$parentPath = MVC_INSTALL_PATH . '/' . $mvc->config['theme']['parent'];
+}
+
+if (isset($parentPath) && $parentPath!=$themePath)
+{
+	// Compile and output the resulting css-file, use caching whenever suitable.
+	$less = "{$parentPath}/style.less.css";
+	$cssFiles[$parentPath]  = "{$parentPath}/style.css";
+	$cache_extension = '.cache';
+
+	$changed = auto_compile_less($less, $cssFiles[$parentPath], $cache_extension);
+
+	if(!$changed && isset($_SERVER['If-Modified-Since']) && strtotime($_SERVER['If-Modified-Since']) >= $time)
+	{
+		$error = true;
+	}
+	else
+	{
+	}
+}
+
+if (isset($themePath))
+{
+	// Compile and output the resulting css-file, use caching whenever suitable.
+	$less = "{$themePath}/style.less.css";
+	$cssFiles[$themePath]  = "{$themePath}/style.css";
+	$cache_extension = '.cache';
+
+	$changed = auto_compile_less($less, $cssFiles[$themePath], $cache_extension);
+
+	if(!$changed && isset($_SERVER['If-Modified-Since']) && strtotime($_SERVER['If-Modified-Since']) >= $time)
+	{
+		$error = true;
+	}
+	else
+	{
+	}
+}
+
+if ($error)
+{
+	header("HTTP/1.0 304 Not Modified");
+}
+else
+{
+	header('Content-type: text/css'); 
+	header('Last-Modified: ' . gmdate("D, d M Y H:i:s",$time) . " GMT");
+	foreach ($cssFiles as $name => $css)
+	{
+		readfile($css);
+	}
 }

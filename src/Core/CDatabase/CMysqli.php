@@ -158,14 +158,22 @@ class CMysqli implements IDBDriver
 			else
 			{
 				
-				$query = 'UPDATE '.$this->dbName.'.'.$table;
+				$query = 'UPDATE `'.$this->dbName.'`.`'.$table.'`';
 				
 				if (count($columns)>0)
 				{
 					$query .= ' SET ';
 					foreach($columns as $col => $value)
 					{
-						$query .= $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\', ';
+						if ($value==null)
+						{
+							$value = "NULL";
+						}
+						else
+						{
+							$value = "'{$this->db->real_escape_string($value)}'";
+						}
+						$query .= '`'.$this->db->real_escape_string($col)."`={$value}, ";
 					}
 					
 					$query = substr($query, 0, strlen($query)-2);
@@ -176,7 +184,7 @@ class CMysqli implements IDBDriver
 					$query .= ' WHERE ';
 					foreach($equals as $col => $value)
 					{
-						$query .= $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\' AND ';
+						$query .= '`'.$this->db->real_escape_string($col).'`=\''.$this->db->real_escape_string($value).'\' AND ';
 					}
 					
 					$query = substr($query, 0, strlen($query)-4);
@@ -184,7 +192,7 @@ class CMysqli implements IDBDriver
 				
 				$this->queries[] = $query;
 				
-				$this->db->query($query);
+				return $this->db->query($query);
 			}
 		}
 		else
@@ -213,14 +221,30 @@ class CMysqli implements IDBDriver
 					}
 					else
 					{
-						$eq .= $this->db->real_escape_string($subcol).'=\''.$this->db->real_escape_string($subval).'\' OR ';
+						if ($subval==null)
+						{
+							$subval==" IS NULL";
+						}
+						else
+						{
+							$subval = "='".$this->db->real_escape_string($subval)."'";
+						}
+						$eq .= $this->db->real_escape_string($subcol)."{$subval} OR ";
 					}
 				}
 				$eq = substr($eq, 0, strlen($eq)-4).')';
 			}
 			else
 			{
-				$eq = $this->db->real_escape_string($col).'=\''.$this->db->real_escape_string($value).'\'';
+				if ($value==null)
+				{
+					$value = " IS NULL";
+				}
+				else
+				{
+					$value = "='".$this->db->real_escape_string($value)."'";
+				}
+				$eq = $this->db->real_escape_string($col)."{$value}";
 			}
 			$query .= $eq.' AND ';
 		}

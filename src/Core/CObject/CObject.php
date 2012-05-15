@@ -35,6 +35,7 @@ class CObject
 		}
 		$this->session->StoreInSession();
 		header('Location: ' . $this->request->CreateUrl($urlOrController.'/'.$method));
+		exit;
 	}
 
 

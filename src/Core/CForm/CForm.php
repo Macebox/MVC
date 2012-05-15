@@ -49,6 +49,7 @@ class CFormElement implements ArrayAccess{
     $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;    
     $type 	= isset($this['type']) ? " type='{$this['type']}'" : null;
     $value 	= isset($this['value']) ? " value='{$this['value']}'" : null;
+	$disabled = isset($this['disabled'])?" disabled='{$this['disabled']}'":null;
 
     $messages = null;
     if(isset($this['validation_messages'])) {
@@ -60,13 +61,13 @@ class CFormElement implements ArrayAccess{
     }
     
     if($type && $this['type'] == 'submit') {
-      return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";	
+      return "<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />\n";	
     }
 	else if($type && $this['type'] == 'textarea') {
-		return "<p><label for='$id'>$label</label><br><textarea {$type}{$class}{$name}{$autofocus}{$readonly}>{$this['value']}</textarea></p>\n";
+		return "<p><label for='$id'>$label</label><br><textarea {$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
 	}
 	else {
-      return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} />{$messages}</p>\n";			  
+      return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />{$messages}</p>\n";			  
     }
   }
 
@@ -305,8 +306,20 @@ EOD;
    */
   public function GetHTMLForElements() {
     $html = null;
+    $buttonbar = null;
     foreach($this->elements as $element) {
-			$html .= $element->GetHTML();
+	  if (isset($element))
+	  {
+        // Wrap buttons in buttonbar.
+        if(!$buttonbar && $element['type'] == 'submit') {
+          $buttonbar = true;
+          $html .= "<p>";
+        } else if($buttonbar && $element['type'] != 'submit') {
+          $buttonbar = false;
+          $html .= "</p>\n";
+        }
+		$html .= $element->GetHTML();
+	  }
     }
     return $html;
   }

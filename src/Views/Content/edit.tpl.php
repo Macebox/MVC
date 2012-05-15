@@ -15,3 +15,5 @@
 <?php else: ?>
   Content not yet created.
 <?php endif; ?>
+</em>
+</p>
