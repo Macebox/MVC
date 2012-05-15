@@ -3,8 +3,9 @@
 // Bootstrap
 define('MVC_INSTALL_PATH', dirname(__FILE__));
 define('MVC_SITE_PATH', MVC_INSTALL_PATH . '/site');
+define('MVC_CORE_PATH', MVC_INSTALL_PATH . '/src/Core');
 
-require(MVC_INSTALL_PATH.'/src/CNocturnal/bootstrap.php');
+require(MVC_CORE_PATH.'/bootstrap.php');
 
 $mvc = CNocturnal::Instance();
 

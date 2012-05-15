@@ -1,0 +1,1 @@
+<h1>Profile page</h1><?php if($is_authenticated): ?><img src="<?=get_gravatar(100)?>"><?=$profileForm?><h2>Du är medlem i följande grupper:</h2><p><?php foreach($user['groups'] as $group):?><p><?=$group['acronym']?> - <?=$group['name']?></p><?php endforeach; ?><?php endif; ?></p>

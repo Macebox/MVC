@@ -18,8 +18,8 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <link rel="stylesheet" href="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/style/style.css">
-  <link rel="stylesheet" href="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/style/boilerplate.css">
+  <link rel="stylesheet" href="<?=$stylesheet?>">
+  <link rel="stylesheet" href="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/boilerplate.css">
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
@@ -36,16 +36,16 @@
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header id="above">
-	<!-- Login -->
+	<?=login_menu()?>
   </header>
 
   <header id="header">
     <div id="banner">
       <a href="<?=CNocturnal::Instance()->request->CreateUrl('index')?>">
-        <img class="site-logo" src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/img/trollface.jpg" alt="logo" width="80" height="80" />
+        <img class="site-logo" src="<?=theme_url($logo)?>" alt="logo" width="<?=$logo_width?>" height="<?=$logo_height?>" />
       </a>
-      <p class="site-title">Nocturnal</p>
-      <p class="site-slogan">Här jobbas det..</p>
+      <p class="site-title"><?=$header?></p>
+      <p class="site-slogan"><?=$slogan?></p>
     </div>
     <?php echo getHTMLForNavigation("navbar")?>
   </header>
@@ -53,7 +53,8 @@
   <div id="main" role="main">
 	<?=get_messages_from_session()?>
     <?=@$main?>
-	<?=render_views()?>
+	<?=render_views('primary')?>
+	<?=render_views('sidebar')?>
   </div>
 
   <footer id="footer">
