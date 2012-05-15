@@ -10,7 +10,7 @@ class CCIndex extends CObject implements IController
 	public function Index()
 	{
 		$this->views->SetTitle('Index Controller');
-		$this->views->AddView('Index/index.tpl.php', array('menu'=>$this->Menu()));
+		$this->views->AddView('Index/index.tpl.php', array('menu'=>$this->Menu()),'primary');
 	}
 	
 	

@@ -18,7 +18,7 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <link rel="stylesheet" href="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/core/boilerplate.css">
+  <link rel="stylesheet" href="<?=CNocturnal::Instance()->request->GetBaseUrl()?>themes/style/boilerplate.css">
   <link rel="stylesheet" href="<?=$stylesheet?>">
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -42,14 +42,13 @@
       <p class="site-title">Nocturnal</p>
       <p class="site-slogan">Här jobbas det..</p>
     </div>
-    <?=getHTMLForNavigation("navbar")?>
+    <?php echo getHTMLForNavigation("navbar")?>
   </header>
   
   <div id="main" role="main">
 	<?=get_messages_from_session()?>
     <?=@$main?>
-	<?=render_views('primary')?>
-	<?=render_views('sidebar')?>
+	<?=render_views()?>
   </div>
 
   <footer id="footer">

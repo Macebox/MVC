@@ -13,7 +13,8 @@ class CCContent extends CObject implements IController
 		$this->views->SetTitle('Content Controller');
 		$this->views->AddView('Content/index.tpl.php', array(
 			'contents'	=> $content->ListAll(),
-			)
+			),
+		'primary'
 		);
 	}
 	
@@ -73,7 +74,8 @@ class CCContent extends CObject implements IController
 			'user'		=> $this->user,
 			'content'	=> $content,
 			'form'		=> $form,
-			)
+			),
+		'primary'
 		);
 	}
 	

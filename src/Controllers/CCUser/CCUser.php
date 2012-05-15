@@ -14,7 +14,8 @@ class CCUser extends CObject implements IController
 			'is_authenticated'	=> $this->user->IsAuthenticated(),
 			'user'				=> $this->user->GetUserProfile(),
 			'allow_create_user'	=> $this->config['create_new_users'],
-			)
+			),
+		'primary'
 		);
 	}
 	
@@ -48,7 +49,8 @@ class CCUser extends CObject implements IController
 		$this->views->AddView('User/login.tpl.php', array(
 			'login_form'		=> $form->GetHTML(),
 			'allow_create_user'	=> $this->config['create_new_users'],
-			)
+			),
+		'primary'
 		);
 	}
 	
@@ -136,7 +138,8 @@ class CCUser extends CObject implements IController
 			'profileForm'		=> $profileForm->GetHTML().$userProfileForm->GetHTMl(),
 			'user'				=> $this->user->GetUserProfile(),
 			'is_authenticated'	=> $this->user->IsAuthenticated(),
-			)
+			),
+		'primary'
 		);
 	}
 	
@@ -188,7 +191,8 @@ class CCUser extends CObject implements IController
 		$this->views->AddView('User/create.tpl.php', array(
 			'register_form'		=> $form->GetHTML(),
 			'allow_create_user'	=> $this->config['create_new_users'],
-			)
+			),
+		'primary'
 		);
 	}
 	

@@ -1,0 +1,285 @@
+/**
+* Description: Grid theme for Lydia based on less, lessphp and semantic.gs.
+*/
+
+/*Färger
+- FFE787
+- 05A696
+- 047F8C
+- 033250
+*/
+
+/** --------------------------------------------------------------
+* semantic.gs
+*/
+@import url(semantic.gs/stylesheets/less/grid.less);
+@import url(http://fonts.googleapis.com/css?family=Shojumaru);
+
+
+/** --------------------------------------------------------------
+* Settings
+*/
+@bgcolor1: #eee;
+@bgcolor2: #05A696;
+@bgcolor3: #033250;
+@bgcolor4: #047F8C;
+@bgtest: hsla(0,0%,90%,0.1);
+@color: #FFE787;
+@font: 1em Verdana, Arial, Helvetica, sans-serif;
+
+/* Wrap elements to site width in grid layout*/
+.wrap() {width:@total-width;margin:0 auto;.clearfix();}
+
+@magic-number:22px;
+
+
+/** --------------------------------------------------------------
+* Typography
+*/
+h1{border-bottom:1px double #ccc;padding-bottom:4px;margin-left: 10px;margin-right: 10px;}
+h2{border-bottom:1px solid #ccc;padding-bottom:4px;margin-left: 15px;margin-right: 15px;}
+p {margin-left: 20px;margin-right: 20px;}
+img {margin: 10px;}
+
+
+/** --------------------------------------------------------------
+* Forms
+*/
+
+fieldset {border: 0px;}
+
+input
+{
+  background: @bgcolor4;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+
+input:hover
+{
+  border: 1px solid @inputHoover;
+}
+
+textarea
+{
+  background: @bgcolor4;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 300px;
+  height: 100px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+textarea:hover
+{
+  border: 1px solid @inputHoover;
+}
+input[readonly]{color:#666;}
+label{font-size:smaller;}
+.validation-failed{border:2px solid red;}
+.validation-message{color:red;font-size:smaller;}
+.form-action-link{font-size:smaller;}
+
+.content-edit{
+  input[type=text]{width:30em;}
+  textarea{width:40em;height:15em;}
+}
+
+
+/** --------------------------------------------------------------
+* HTML & Body
+*/
+html{background-color:@bgcolor2;}
+body{margin:0;padding:0;color:@color;background-color:@bgcolor2;font:@font;
+  &:hover{background:@bgcolor2;}
+} 
+
+
+/** --------------------------------------------------------------
+* The header area.
+*
+*/
+.tablecell() {display:table-cell;vertical-align:middle;text-align:center;}
+#outer-wrap-header{height:@magic-number*4;margin-top:@magic-number/2;margin-bottom:@magic-number/2;}
+#inner-wrap-header{.wrap();background: @bgcolor4; border-radius: 10px;}
+#header{.column(12);}
+
+
+/** --------------------------------------------------------------
+* Login menu
+*/
+#login-menu{float:right;font-size:smaller;
+  img.gravatar{vertical-align:middle;}
+  a{text-decoration:none;}
+  a:hover{text-decoration:underline;}
+}
+
+
+/** --------------------------------------------------------------
+* Banner
+*/
+#banner {display:table;margin-bottom:@magic-number/2;
+  #site-logo{.tablecell();}
+  #site-title{.tablecell();font-size:2.5em;padding-left:0.2em;text-shadow:#ccc 2px -2px 2px;
+    a{text-decoration:none; font-family: 'Shojumaru', cursive;}
+  }
+  #site-slogan{.tablecell();font-size:1.5em;padding-left:10px; font-family: 'Shojumaru', cursive;}
+}
+
+
+/** --------------------------------------------------------------
+* The flash area.
+*
+*/
+#outer-wrap-flash{}
+#inner-wrap-flash{.wrap();height:@magic-number*3;margin-bottom:@magic-number;}
+#flash{.column(12);height:100%;}
+
+#navbar {
+  font-family: arial;
+  font-weight: bold;
+  padding: 2px 8px;
+  background:@bgcolor4;
+  border:2px solid #FFE787;
+  border-radius: 10px;
+}
+#navbar a {padding:6px 8px;text-decoration:none;border:2px solid transparent;}
+#navbar a:hover,
+#navbar a.selected
+{background:#03708C;border:2px solid #FFE787;border-radius: 10px;}
+
+
+/** --------------------------------------------------------------
+* The featured area.
+*
+*/
+#outer-wrap-featured{}
+#inner-wrap-featured{.wrap;height:@magic-number*5;margin-bottom:@magic-number;}
+#featured{}
+
+#featured-first,
+#featured-middle,
+#featured-last{.column(4);;height:100%;}
+
+
+/** --------------------------------------------------------------
+* The main content area.
+*
+*/
+#outer-wrap-main{}
+#inner-wrap-main{.wrap;margin-bottom:@magic-number;}
+#main{}
+
+#primary{.column(8);background: @bgcolor3;border-radius: 10px;}
+#sidebar{.column(4);background: @bgcolor3;border-radius: 10px;}
+
+
+/** --------------------------------------------------------------
+* The triptych area.
+*
+*/
+#outer-wrap-triptych{}
+#inner-wrap-triptych{.wrap();height:@magic-number*5;margin-bottom:@magic-number;}
+#triptych{height:inherit;}
+
+#triptych-first,
+#triptych-middle,
+#triptych-last{.column(4);background-color:@bgtest;height:100%;}
+
+
+/** --------------------------------------------------------------
+* The footer column area.
+*
+*/
+#outer-wrap-footer-column{background-color:@bgtest;border-top:1px solid #bbb;}
+#inner-wrap-footer-column{.wrap();height:@magic-number*5;padding-bottom:@magic-number;}
+#footer{height:inherit;}
+
+#footer-column-one,
+#footer-column-two,
+#footer-column-three,
+#footer-column-four{.column(3);font-size:0.9em;margin-top:1em;height:100%;
+background-color:lighten(@bgtest,10%);}
+
+
+/** --------------------------------------------------------------
+* The footer area.
+*
+*/
+#outer-wrap-footer{}
+#inner-wrap-footer{.wrap();}
+#footer{.column(12);font-size:0.80em;color:#666;padding-bottom:@magic-number;}
+
+
+/** --------------------------------------------------------------
+* Links
+*/
+.hover(){text-decoration:none;color:#5C0A0A;}
+a{color:inherit;
+  &:link{}
+  &:visited{}
+  &:hover{.hover()}
+  &:focus{.hover()}
+  &:active{}
+}
+
+
+/** --------------------------------------------------------------
+* User feedback message wrappers.
+*/
+.error, .alert, .warning, .notice, .success, .info {
+padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice, .warning { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success       { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info          { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a, .warning a { color: #514721; }
+.success a         { color: #264409; }
+.info a            { color: #205791; }
+
+
+/** --------------------------------------------------------------
+* Misc
+*/
+.smaller-text{font-size:smaller;}
+.silent{color:#999;}
+
+.gbMsg
+{
+  background: transparent;
+  border: @borders;
+  margin-bottom:0.5em;
+  padding:0.5em;
+  border-radius: 10px;
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-left: 20px;
+}
+
+.gbMsgTime
+{
+  font-size: 10px;
+  border-radius: 5px;
+  padding-left: 5px;
+  margin-top: 0px;
+}
+
+.gbMsgContent
+{
+  font-size: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: @borders;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}

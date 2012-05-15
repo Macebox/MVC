@@ -1,4 +1,7 @@
 <h1>User Index</h1>
+
+<p>
+
 <?php if($is_authenticated): ?>
 
 <a href='<?=create_url('user/profile')?>'>Profile</a>
@@ -10,3 +13,5 @@
 <a href='<?=create_url('user/create')?>'>or create a new user</a>
 <?php endif; ?>
 <?php endif; ?>
+
+</p>

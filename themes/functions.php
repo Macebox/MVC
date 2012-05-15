@@ -38,15 +38,19 @@ function get_debug()
 	return $html;
 }
 
-function render_views()
+function render_views($region='default')
 {
-	return CNocturnal::Instance()->views->Render();
+	return CNocturnal::Instance()->views->Render($region);
+}
+
+function region_has_content($region='default' /*...*/) {
+  return CNocturnal::Instance()->views->RegionHasView(func_get_args());
 }
 
 /**
 * Create a url by prepending the base_url.
 */
-function base_url($url)
+function base_url($url=null)
 {
 	return CNocturnal::Instance()->request->base_url . trim($url, '/');
 }

@@ -18,13 +18,3 @@ Förhoppningsvis kommer de resterande åren att vara kul här.</p>
 <p>
 Jag gillar även sidor med meme's, såsom <a href="http://9gag.com" target="_blank">9gag</a>.
 </p>
-  
-<!-- footer byline -->
-<footer class="byline">
-  <figure class="right top" style="width: auto;"><img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>site/data/me/not_bad.jpg" alt="not bad!" style="height: 144px; width: 144px;"></figure>
-    <p>Mikael Roos undervisar i databaser och utveckling av webbapplikationer vid Blekinge 
-    Tekniska Högskola. Mikaels nyckelord äro, i nämnd ordning, SQL, PHP, HTML och CSS. MegaMic, 
-    som han även kallar sig, kör FreeBSD (Unix) på servrarna i garderoben och drömmer om sina 
-    (kommande) opensource-projekt.</p>
-	<p class="smallText">Jag hoppas du förstår att jag använder din text med bilden Not Bad av en anledning!</p>
-</footer>

@@ -26,7 +26,7 @@ $mvc = CNocturnal::Instance();
 if(!defined('__DIR__')) define('__DIR__', dirname(__FILE__));
  
 // Include the lessphp-compiler
-include MVC_INSTALL_PATH."/lessphp/lessc.inc.php";
+include MVC_CORE_PATH."/lessphp/lessc.inc.php";
 
 // Use gzip if available
 if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
@@ -64,11 +64,13 @@ function auto_compile_less($less_fname, $css_fname, $cache_ext='.cache') {
 
 
 // Compile and output the resulting css-file, use caching whenever suitable.
-$less = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style/style.less.css";
-$css  = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style/style.css";
+$less = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style.less.css";
+$css  = MVC_INSTALL_PATH . "/themes/{$mvc->config['theme']['name']}/style.css";
 $cache_extension = '.cache';
+
 $changed = auto_compile_less($less, $css, $cache_extension);
 $time = mktime(0,0,0,21,5,1980);
+
 if(!$changed && isset($_SERVER['If-Modified-Since']) && strtotime($_SERVER['If-Modified-Since']) >= $time){ 
   header("HTTP/1.0 304 Not Modified"); 
 } else { 

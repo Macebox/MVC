@@ -14,7 +14,7 @@ class CCMe extends CObject implements IController
 	{
 		$this->views->SetTitle('Problem htmlfags?');
 		
-		$this->views->AddView('Me/index.tpl.php', array());
+		$this->views->AddView('Me/index.tpl.php', array(),'primary');
 		
 	}
 }
