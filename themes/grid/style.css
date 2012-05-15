@@ -8,23 +8,133 @@ body:before, body:after {
   display:table;
 }
 body:after { clear:both; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:100.01%;
+  font:inherit;
+  vertical-align:baseline;
+}
+body { line-height:1; }
+ol, ul { list-style:none; }
+blockquote, q { quotes:none; }
+blockquote:before, blockquote:after, q:before, q:after {
+  content:'';
+  content:none;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display:block; }
+audio, canvas, video {
+  display:inline-block;
+  *display:inline;
+  *zoom:1;
+}
+audio:not([controls]) { display:none; }
+[hidden] { display:none; }
 h1 {
-  border-bottom:1px double #cccccc;
-  padding-bottom:4px;
-  margin-left:10px;
-  margin-right:10px;
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:2.375em;
+  line-height:1.1579;
+  border-bottom:1px solid #cccccc;
+  margin-bottom:21px;
 }
 h2 {
-  border-bottom:1px solid #cccccc;
-  padding-bottom:4px;
-  margin-left:15px;
-  margin-right:15px;
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:1.875em;
+  line-height:1.4667;
 }
-p {
-  margin-left:20px;
-  margin-right:20px;
+h3 {
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:1.375em;
+  line-height:1;
 }
-img { margin:10px; }
+h4 {
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:1.25em;
+  line-height:1.1;
+}
+h5 {
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:1em;
+  font-weight:bold;
+}
+h6 {
+  font-weight:normal;
+  color:#ffe787;
+  margin-bottom:22px;
+  font-family:Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size:1em;
+  font-weight:bold;
+  margin-bottom:0;
+}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img { margin:0; }
+p { margin-bottom:1.375em; }
+a {
+  color:#660000;
+  text-decoration:underline;
+}
+a:focus, a:hover {
+  color:#990000;
+  text-decoration:none;
+}
+blockquote {
+  margin-left:1em;
+  margin-bottom:1.375em;
+}
+strong, dfn { font-weight:bold; }
+em, dfn { font-style:italic; }
+pre {
+  margin-bottom:1.375em;
+  white-space:pre;
+}
+pre, code, tt, .code { font:1em / 1.375 "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace; }
+li ul, li ol { margin:0; }
+ul, ol {
+  margin:0.6875em 1.5em 1.375em 0;
+  padding-left:1.5em;
+}
+ul { list-style-type:disc; }
+ol { list-style-type:decimal; }
+dl { margin:0 0 1.375em 0; }
+dl dt { font-weight:bold; }
+dd { margin-left:1.5em; }
+table {
+  margin-bottom:1.375em;
+  width:100%;
+}
+caption {
+  text-align:left;
+  font-style:italic;
+}
+thead { border-bottom:2px solid #222222; }
+th {
+  vertical-align:bottom;
+  font-weight:bold;
+  text-align:left;
+}
+th, td { padding:5px 10px 5px 5px; }
+tbody tr { border-bottom:1px solid #eeeeee; }
+tbody tr:hover { color:#000000; }
+tfoot { font-style:italic; }
 fieldset { border:0px; }
 input {
   background:#047f8c;
@@ -68,7 +178,7 @@ body {
   padding:0;
   color:#ffe787;
   background-color:#05a696;
-  font:1em Verdana, Arial, Helvetica, sans-serif;
+  font:100.01% / 1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body:hover { background:#05a696; }
 #outer-wrap-header {
@@ -154,8 +264,6 @@ body:hover { background:#05a696; }
   font-weight:bold;
   padding:2px 8px;
   background:#047f8c;
-  border:2px solid #ffe787;
-  border-radius:10px;
 }
 #navbar a {
   padding:6px 8px;
@@ -163,7 +271,7 @@ body:hover { background:#05a696; }
   border:2px solid transparent;
 }
 #navbar a:hover, #navbar a.selected {
-  background:#03708c;
+  background:#045260;
   border:2px solid #ffe787;
   border-radius:10px;
 }
@@ -191,6 +299,8 @@ body:hover { background:#05a696; }
   margin:0 auto;
   *zoom:1;
   margin-bottom:22px;
+  background:#033250;
+  border-radius:10px;
 }
 #inner-wrap-main:before, #inner-wrap-main:after {
   content:"";
@@ -202,16 +312,12 @@ body:hover { background:#05a696; }
   float:left;
   width:620px;
   margin:0 10px;
-  background:#033250;
-  border-radius:10px;
 }
 #sidebar {
   display:inline;
   float:left;
   width:300px;
   margin:0 10px;
-  background:#033250;
-  border-radius:10px;
 }
 #inner-wrap-triptych {
   width:960px;
@@ -276,18 +382,16 @@ body:hover { background:#05a696; }
   float:left;
   width:940px;
   margin:0 10px;
-  font-size:0.80em;
-  color:#666666;
   padding-bottom:22px;
 }
 a { color:inherit; }
 a:hover {
   text-decoration:none;
-  color:#5c0a0a;
+  color:#05a696;
 }
 a:focus {
   text-decoration:none;
-  color:#5c0a0a;
+  color:#05a696;
 }
 .error, .alert, .warning, .notice, .success, .info {
   padding:0.8em;
@@ -322,7 +426,7 @@ a:focus {
 .silent { color:#999999; }
 .gbMsg {
   background:transparent;
-  border:;
+  border:1px solid gray;
   margin-bottom:0.5em;
   padding:0.5em;
   border-radius:10px;
@@ -331,16 +435,14 @@ a:focus {
   padding-left:20px;
 }
 .gbMsgTime {
-  font-size:10px;
   border-radius:5px;
   padding-left:5px;
   margin-top:0px;
 }
 .gbMsgContent {
-  font-size:12px;
   padding-left:10px;
   padding-right:10px;
-  border-bottom:;
+  border-bottom:1px solid gray;
   padding-bottom:10px;
   margin-bottom:0;
 }

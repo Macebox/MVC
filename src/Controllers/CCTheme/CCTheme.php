@@ -19,8 +19,18 @@ class CCTheme extends CObject implements IController
 	}
 	
 	/**
-   * Put content in some regions.
-   */
+	* Testing method for all formatting
+	*/
+	
+	public function Test()
+	{
+		$this->views->SetTitle('Testing theme formatting');
+		$this->views->AddView('Theme/h1h6.tpl.php',array(),'primary');
+	}
+	
+	/**
+	* Put content in some regions.
+	*/
 	public function SomeRegions()
 	{
 		$this->views->SetTitle('Theme display content for some regions');

@@ -17,13 +17,14 @@
         <span id='site-title'><a href='<?=base_url()?>'><?=$header?></a></span>
         <span id='site-slogan'>Här jobbas det..</span>
       </div>
+	  <?=getHTMLForNavigation("navbar")?>
     </div>
   </div>
 </div>
 
 <div id='outer-wrap-flash'>
   <div id='inner-wrap-flash'>
-    <div id='flash'><?=getHTMLForNavigation("navbar")?></div>
+    <div id='flash'></div>
   </div>
 </div>
 
