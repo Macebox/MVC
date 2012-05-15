@@ -1,12 +1,5 @@
 <?php
 /**
-* Helpers for the template file.
-*/
-$mvc->data['header'] = '<h1>MVC</h1>';
-$mvc->data['footer'] = '<p>&copy; Nocturnal by Marcus Olsson</p>';
-
-
-/**
 * Print debuginformation from the framework.
 */
 function get_debug()
@@ -53,6 +46,11 @@ function region_has_content($region='default' /*...*/) {
 function base_url($url=null)
 {
 	return CNocturnal::Instance()->request->base_url . trim($url, '/');
+}
+
+function theme_url($url=null)
+{
+	return CNocturnal::Instance()->data['themeUrl'] . $url;
 }
 
 /**
