@@ -3,8 +3,8 @@
 
 <p>Download:</p>
 
-<p>git clone git://github.com/macebox/MVC.git</p>
-<a target="_blank" href="https://github.com/macebox/MVC">Source</a>
+<p>git clone git://github.com/Macebox/MVC.git</p>
+<a target="_blank" href="https://github.com/Macebox/MVC">Source</a>
 
 <h2>Install:</h2>
 

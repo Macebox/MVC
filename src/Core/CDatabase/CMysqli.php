@@ -110,9 +110,6 @@ class CMysqli implements IDBDriver
 				
 				$this->queries[] = $query;
 				
-				echo $query;
-				/*exit;*/
-				
 				return $this->db->query($query);
 			}
 		}
