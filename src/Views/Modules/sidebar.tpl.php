@@ -36,6 +36,18 @@
 
 
 <div class='box'>
+<h4>Nocturnal Extra Modules</h4>
+<p>Extra modules that belong to Nocturnal.</p>
+<ul>
+<?php foreach($modules as $module): ?>
+  <?php if($module['isNocturnalExtra']): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+  <?php endif; ?>
+<?php endforeach; ?>
+</ul>
+</div>
+
+<div class='box'>
 <h4>Models</h4>
 <p>A class is considered a model if its name starts with CM.</p>
 <ul>
@@ -60,13 +72,24 @@
 </ul>
 </div>
 
+<div class='box'>
+<h4>Manageable modules</h4>
+<p>Modules that implements the interface IModule.</p>
+<ul>
+<?php foreach($modules as $module): ?>
+  <?php if($module['isManageable']): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+  <?php endif; ?>
+<?php endforeach; ?>
+</ul>
+</div>
 
 <div class='box'>
 <h4>More modules</h4>
 <p>Modules that does not implement any specific Nocturnal interface.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'])): ?>
+  <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'] || $module['isManageable'] || $module['isNocturnalExtra'])): ?>
 	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
