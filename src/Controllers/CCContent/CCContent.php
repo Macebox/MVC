@@ -1,11 +1,22 @@
 <?php
 
+/**
+* Controller for the Content
+*
+* @package NocturnalCMF
+*/
+
 class CCContent extends CObject implements IController
 {
 	public function __construct()
 	{
 		parent::__construct();
 	}
+	
+	/**
+	*  Index page for the module.
+	*
+	*/
 	
 	public function Index()
 	{
@@ -18,10 +29,21 @@ class CCContent extends CObject implements IController
 		);
 	}
 	
+	/**
+	*  Redirects to edit-method with a blank id.
+	*
+	*/
+	
 	public function Create()
 	{
 		$this->Edit();
 	}
+	
+	/**
+	* Displays the form for the content-creation/editing.
+	*
+	* @param integer id, content id
+	*/
 	
 	public function Edit($id=null)
 	{
@@ -81,6 +103,13 @@ class CCContent extends CObject implements IController
 		);
 	}
 	
+	/**
+	* Callback-method for the Edit-page, saves the content.
+	*
+	* @param CForm form with inserted data
+	* @param CMContent content to be edited
+	*/
+	
 	public function DoSave($form, $content)
 	{
 		$content['id']    	= $form['id']		['value'];
@@ -91,6 +120,13 @@ class CCContent extends CObject implements IController
 		$content['filter']	= $form['filter']	['value'];
 		return $content->Save();
 	}
+	
+	/**
+	* Callback-method for the Edit-page, "removes" the content.
+	*
+	* @param CForm form holding the id
+	* @param CMContent content to be removed
+	*/
 	
 	public function DoRemove($form, $content)
 	{

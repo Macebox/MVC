@@ -2,7 +2,7 @@
 /**
  * A utility class to easy creating and handling of forms
  * 
- * @package LydiaCore
+ * @package NocturnalCore
  */
 class CFormElement implements ArrayAccess{
 
@@ -212,6 +212,11 @@ class CFormElementTextArea extends CFormElement {
   }
 }
 
+/**
+* Class for creation of forms and handling their validation.
+*
+* @package NocturnalCMF
+*/
 
 class CForm implements ArrayAccess {
 

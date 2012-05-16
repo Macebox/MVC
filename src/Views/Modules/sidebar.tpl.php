@@ -1,21 +1,21 @@
 <div class='box'>
 <h4>All modules</h4>
-<p>All Lydia modules.</p>
+<p>All Nocturnal modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <li><?=$module['name']?></li>
+  <a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
 <?php endforeach; ?>
 </ul>
 </div>
 
 
 <div class='box'>
-<h4>Lydia core</h4>
-<p>Lydia core modules.</p>
+<h4>Nocturnal core</h4>
+<p>Nocturnal core modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <?php if($module['isLydiaCore']): ?>
-  <li><?=$module['name']?></li>
+  <?php if($module['isNocturnalCore']): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -23,12 +23,12 @@
 
 
 <div class='box'>
-<h4>Lydia CMF</h4>
-<p>Lydia Content Management Framework (CMF) modules.</p>
+<h4>Nocturnal CMF</h4>
+<p>Nocturnal Content Management Framework (CMF) modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <?php if($module['isLydiaCMF']): ?>
-  <li><?=$module['name']?></li>
+  <?php if($module['isNocturnalCMF']): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -41,7 +41,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isModel']): ?>
-  <li><?=$module['name']?></li>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -54,7 +54,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isController']): ?>
-  <li><?=$module['name']?></li>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -63,11 +63,11 @@
 
 <div class='box'>
 <h4>More modules</h4>
-<p>Modules that does not implement any specific Lydia interface.</p>
+<p>Modules that does not implement any specific Nocturnal interface.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <?php if(!($module['isController'] || $module['isLydiaCore'] || $module['isLydiaCMF'])): ?>
-  <li><?=$module['name']?></li>
+  <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'])): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>

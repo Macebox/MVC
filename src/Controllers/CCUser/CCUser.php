@@ -1,11 +1,23 @@
 <?php
 
+/**
+* Controller for the User
+*
+* @package NocturnalCMF
+*/
+
 class CCUser extends CObject implements IController
 {
 	public function __construct()
 	{
 		parent::__construct();
 	}
+	
+	/**
+	* Index-page for the module.
+	*
+	*
+	*/
 	
 	public function Index()
 	{
@@ -18,6 +30,12 @@ class CCUser extends CObject implements IController
 		'primary'
 		);
 	}
+	
+	/**
+	* Login-page for the users.
+	*
+	*
+	*/
 	
 	public function Login()
 	{
@@ -54,6 +72,12 @@ class CCUser extends CObject implements IController
 		);
 	}
 	
+	/**
+	* Login-method for the module
+	*
+	* @param CForm form with login information inserted
+	*/
+	
 	public function DoLogin($form)
 	{
 		if ($this->user->Login($form->GetValue('acronym'), $form->GetValue('password')))
@@ -66,11 +90,23 @@ class CCUser extends CObject implements IController
 		}
 	}
 	
+	/**
+	* Logout-method for the module.
+	*
+	*
+	*/
+	
 	public function Logout()
 	{
 		$this->user->Logout();
 		$this->RedirectToController();
 	}
+	
+	/**
+	* Profile-page for the module.
+	*
+	*
+	*/
 	
 	public function Profile()
 	{
@@ -143,6 +179,12 @@ class CCUser extends CObject implements IController
 		);
 	}
 	
+	/**
+	* Create user-page for the module.
+	*
+	*
+	*/
+	
 	public function Create()
 	{
 		$form = new CForm(array('name'=>'createUserForm', 'action'=>$this->request->CreateUrl('user/create')), array(
@@ -196,6 +238,12 @@ class CCUser extends CObject implements IController
 		);
 	}
 	
+	/**
+	* User creation-method for the module.
+	*
+	*
+	*/
+	
 	public function DoCreate($form)
 	{
 		if ($form['password']['value']!=$form['password2']['value'])
@@ -220,6 +268,12 @@ class CCUser extends CObject implements IController
 		}
 	}
 	
+	/**
+	* Password change-method for the module.
+	*
+	*
+	*/
+	
 	public function DoChangePassword($form)
 	{
 		if ($form->GetValue('Pw') == $form->GetValue('Pw2'))
@@ -233,6 +287,12 @@ class CCUser extends CObject implements IController
 		
 		$this->RedirectToController('profile');
 	}
+	
+	/**
+	* Profile save-method for the module.
+	*
+	*
+	*/
 	
 	public function DoSaveProfile($form)
 	{

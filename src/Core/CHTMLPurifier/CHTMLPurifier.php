@@ -1,8 +1,20 @@
 <?php
 
+/**
+* Wrapper class for HTMLPurifier
+*
+* @package NocturnalCMF
+*/
+
 class CHTMLPurifier
 {
 	public static $instance = null;
+	
+	/**
+	* Returns a singleton instance of HTMLPurify.
+	*
+	*
+	*/
 	
 	public static function Purify()
 	{

@@ -1,5 +1,11 @@
 <?php
 
+/**
+* Controller for the Themes
+*
+* @package NocturnalExtra
+*/
+
 class CCTheme extends CObject implements IController
 {
 	public function __construct()
@@ -7,6 +13,12 @@ class CCTheme extends CObject implements IController
 		parent::__construct();
 		$this->views->AddStyle('body:hover{background:#fff url('.$this->request->base_url.'themes/grid/grid_12_60_20.png) repeat-y center top;}');
 	}
+	
+	/**
+	* Index-page for the themes.
+	*
+	*
+	*/
 	
 	public function Index()
 	{

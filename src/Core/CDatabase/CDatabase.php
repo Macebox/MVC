@@ -4,11 +4,23 @@ require_once(MVC_INSTALL_PATH.'/src/Core/CDatabase/IDBDriver.php');
 
 require_once(MVC_INSTALL_PATH.'/src/Core/CDatabase/CMysqli.php');
 
+/**
+* Class "interface" which can be extended to using different kinds of database-connection-models.
+*
+* @package NocturnalCore
+*/
+
 class CDatabase implements IDBDriver
 {
 	private $db = null;
 	private $stmt = null;
 	private static $numQueries = 0;
+	
+	/**
+	* Returns number of queries this run.
+	*
+	*
+	*/
 	
 	public function GetNumQueries()
 	{
@@ -23,10 +35,49 @@ class CDatabase implements IDBDriver
 		}
 	}
 	
+	/**
+	* Returns the queries executed this run as an array.
+	*
+	*
+	*/
+	
 	public function GetQueries()
 	{
 		return $this->db->GetQueries();
 	}
+	
+	/**
+	* SELECT ... FROM ... WHERE ... ORDER BY ..., interface
+	*
+	* @param String table to user
+	* @param Array columns to select(array() for *)
+	* @param Array equals (described below)
+	* @param Array order_by ...
+	* @param boolean ascending=true
+	*
+	* ---------------------------------------------------------
+	*	<--- AND EXAMPLE --->
+	*	$equals =
+	*	array(
+	*		'column'	=> 'value',
+	*		'column2'	=> 'value2'
+	*		);
+	*	-----> WHERE column='value' AND column2='value2'
+	*
+	*	<--- OR EXAMPLE --->
+	*	$equals =
+	*	array(
+	*		'column'	=> 'value',
+	*		array(
+	*			'column2'	=> 'value2',
+	*			'column3'	=> 'value3',
+	*			array(
+	*				'column2' => 'value3'
+	*				)
+	*			)
+	*		);
+	*	-----> WHERE column='value' AND (column2='value2' OR column3='value3' OR (column2='value3'))
+	*/
 	
 	public function Get($table, $columns=array(), $equals=array(), $order=null, $asc=true)
 	{
@@ -48,6 +99,15 @@ class CDatabase implements IDBDriver
 		}
 	}
 	
+	/**
+	* Insert INTO ... (...,...) VALUES (...,...) 
+	*
+	* @param String table name
+	* @param Array columns and their values
+	* ----------------------------------------------
+	* columns = array('column'=>'value');
+	*/
+	
 	public function Insert($table, $columns=array())
 	{
 		if (!empty($this->db))
@@ -67,6 +127,13 @@ class CDatabase implements IDBDriver
 			/*Error message*/
 		}
 	}
+	
+	/**
+	* DELETE FROM ... WHERE ...
+	*
+	* @param String table name
+	* @param Array equals(works as Get's equals)
+	*/
 	
 	public function Delete($table, $equals=array())
 	{
@@ -88,6 +155,14 @@ class CDatabase implements IDBDriver
 		}
 	}
 	
+	/**
+	* UPDATE ... SET ...=... WHERE ...
+	*
+	* @param String table name
+	* @param Array columns to update(works as Inserts' columns)
+	* @param Array equals(works as Get's equals)
+	*/
+	
 	public function Update($table, $columns=array(), $equals=array())
 	{
 		if (!empty($this->db))
@@ -108,6 +183,13 @@ class CDatabase implements IDBDriver
 		}
 	}
 	
+	/**
+	* Execute a database query unprotected.
+	*
+	* @param String question
+	* @param boolean Is this a secure on or not?(leaves notice if not)
+	*/
+	
 	public function RunQuery($q, $secure=false)
 	{
 		if (!$secure)
@@ -116,6 +198,12 @@ class CDatabase implements IDBDriver
 		}
 		return $this->db->RunQuery($q, $secure);
 	}
+	
+	/**
+	* Get last inserted id this run.
+	*
+	*
+	*/
 	
 	public function getLastId()
 	{

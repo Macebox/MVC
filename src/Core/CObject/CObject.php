@@ -2,7 +2,7 @@
 /**
 * Holding a instance of Cmvcdia to enable use of $this in subclasses.
 *
-* @package mvcdiaCore
+* @package NocturnalCore
 */
 class CObject
 {
@@ -21,6 +21,13 @@ class CObject
 		$this->session	= &$mvc->session;
 		$this->user		= &$mvc->user;
 	}
+	
+	/**
+	* Redirects to url/controller
+	*
+	* @param String url or controller
+	* @param String method
+	*/
 	
 	protected function RedirectTo($urlOrController=null, $method=null)
 	{

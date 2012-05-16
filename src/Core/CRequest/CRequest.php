@@ -1,5 +1,11 @@
 <?php
 
+/**
+* Handles the requests to the server.
+*
+* @package NocturnalCore
+*/
+
 class CRequest
 {
 	public function __construct()
@@ -14,6 +20,13 @@ class CRequest
 			$this->queryStringUrl = true;
 		}
 	}
+	
+	/**
+	* Init method for the module.
+	*
+	* @param String base url
+	* @param Array routing table
+	*/
 	
 	public function Init($baseUrl = null, $routing=null)
 	{
@@ -78,6 +91,12 @@ class CRequest
 		$this->arguments    = $arguments;
 	}
 	
+	/**
+	* Returns the current url.
+	*
+	*
+	*/
+	
 	public function GetCurrentUrl()
 	{
 		$url = "http";
@@ -89,10 +108,22 @@ class CRequest
 		return $url;
 	}
 	
+	/**
+	* Returns the base-url to the site.
+	*
+	*
+	*/
+	
 	public function GetBaseUrl()
 	{
 		return 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['SCRIPT_NAME'],0,strpos($_SERVER['SCRIPT_NAME'], 'index.php'));
 	}
+	
+	/**
+	* Creates(returns) an url based on the input-url.
+	*
+	*
+	*/
 	
 	public function CreateUrl($url=null)
 	{

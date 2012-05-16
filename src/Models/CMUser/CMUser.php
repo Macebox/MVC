@@ -1,11 +1,23 @@
 <?php
 
+/**
+* Model for user-handling
+*
+* @package NocturnalCMF
+*/
+
 class CMUser extends CObject implements IModule
 {
 	public function __construct($mvc=null)
 	{
 		parent::__construct($mvc);
 	}
+	
+	/**
+	* Manage method for the module.
+	*
+	* @param String action to be run
+	*/
 	
 	public function Manage($action=null)
 	{
@@ -28,6 +40,12 @@ class CMUser extends CObject implements IModule
 				break;
 		}
 	}
+	
+	/**
+	* Inits the database tables and inserts standard users
+	* read from the config-file.
+	*
+	*/
 	
 	private function Init()
 	{
@@ -140,6 +158,13 @@ class CMUser extends CObject implements IModule
 		return false;
 	}
 	
+	/**
+	* Login-method for the model.
+	*
+	* @param String acronym or email for the user
+	* @param String password
+	*/
+	
 	public function Login($acronymOrEmail, $password)
 	{
 		$user	= $this->database->Get('user','',array(
@@ -163,6 +188,15 @@ class CMUser extends CObject implements IModule
 		}
 		return ($user != null);
 	}
+	
+	/**
+	* Create method for the model.
+	*
+	* @param String acronym for the user
+	* @param String password for the user
+	* @param String name for the user
+	* @param String email for the user
+	*/
 	
 	public function Create($acronym, $password, $name, $email)
 	{
@@ -217,11 +251,24 @@ class CMUser extends CObject implements IModule
 		}
 	}
 	
+	/**
+	* Logout-method for the model.
+	*
+	*
+	*/
+	
 	public function Logout()
 	{
 		$this->session->UnsetAuthenticatedUser();
 		$this->session->AddMessage('success', "You have logged out.");
 	}
+	
+	/**
+	* Method for changing the password of the user.
+	*
+	* @param String old password
+	* @param String new password
+	*/
 	
 	public function ChangePassword($oldPassword, $newPassword)
 	{
@@ -255,6 +302,12 @@ class CMUser extends CObject implements IModule
 		}
 	}
 	
+	/**
+	* Method to save profile
+	*
+	* @param Array of user information
+	*/
+	
 	public function SaveProfile($userInfo)
 	{
 		if (is_array($userInfo))
@@ -270,15 +323,33 @@ class CMUser extends CObject implements IModule
 		}
 	}
 	
+	/**
+	* Method which returns true if user is logged in.
+	*
+	*
+	*/
+	
 	public function IsAuthenticated()
 	{
 		return ($this->session->GetAuthenticatedUser() != false);
 	}
 	
+	/**
+	* Returns data about the user.
+	*
+	*
+	*/
+	
 	public function GetUserProfile()
 	{
 		return $this->session->GetAuthenticatedUser();
 	}
+	
+	/**
+	* Refreshes the user in the session.
+	*
+	*
+	*/
 	
 	public function RefreshUserProfile($acronym=null)
 	{
@@ -311,6 +382,12 @@ class CMUser extends CObject implements IModule
 		}
 	}
 	
+	/**
+	* Checks wheter user is in a group.
+	*
+	*
+	*/
+	
 	public function InGroup($groupAcronym)
 	{
 		if ($this->IsAuthenticated())
@@ -323,6 +400,12 @@ class CMUser extends CObject implements IModule
 		return FALSE;
 	}
 	
+	/**
+	* Returns current users acronym.
+	*
+	*
+	*/
+	
 	public function GetAcronym()
 	{
 		if ($this->IsAuthenticated())
@@ -334,6 +417,13 @@ class CMUser extends CObject implements IModule
 		
 		return null;
 	}
+	
+	/**
+	* Creates a secure password.
+	*
+	* @param String plain-text password
+	* @param boolean salt it
+	*/
 	
 	public function CreatePassword($plain, $salt=true)
 	{
@@ -349,6 +439,14 @@ class CMUser extends CObject implements IModule
 		}
 		return array('salt'=>$salt, 'password'=>$password);
 	}
+	
+	/**
+	* Checks if password is correct
+	*
+	* @param String plain-text password
+	* @param String salt
+	* @param String secure password
+	*/
 	
 	public function CheckPassword($plain, $salt, $password)
 	{
