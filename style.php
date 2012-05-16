@@ -17,7 +17,7 @@
 // __DIRNAME__only available from PHP 5.3 and forward
 define('MVC_INSTALL_PATH', dirname(__FILE__));
 define('MVC_SITE_PATH', MVC_INSTALL_PATH . '/site');
-define('MVC_CORE_PATH', MVC_INSTALL_PATH . '/src/Core');
+define('MVC_CORE_PATH', MVC_INSTALL_PATH . '/src/core');
 
 require(MVC_CORE_PATH . '/bootstrap.php');
 

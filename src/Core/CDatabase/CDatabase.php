@@ -1,8 +1,8 @@
 <?php
 
-require_once(MVC_INSTALL_PATH.'/src/Core/CDatabase/IDBDriver.php');
+require_once(MVC_CORE_PATH.'/CDatabase/IDBDriver.php');
 
-require_once(MVC_INSTALL_PATH.'/src/Core/CDatabase/CMysqli.php');
+require_once(MVC_CORE_PATH.'/CDatabase/CMysqli.php');
 
 /**
 * Class "interface" which can be extended to using different kinds of database-connection-models.

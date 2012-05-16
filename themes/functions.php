@@ -17,12 +17,17 @@ function get_debug()
 		}
 		if (isset($mvc->config['debug']['db-num-queries']) && $mvc->config['debug']['db-num-queries'])
 		{
-			$html .= "<h3>Database:</h3><p>Database made " . $mvc->database->GetNumQueries() . " queries.</p><p>Queries:<br />";
-			foreach($mvc->database->GetQueries() as $key => $val)
+			$html .= "<h3>Database:</h3><p>Database made " . $mvc->database->GetNumQueries() . " queries.</p>";
+			
+			if (isset($mvc->config['debug']['db-queries']) && $mvc->config['debug']['db-queries'])
 			{
-				$html .= $val."<br />";
+				$html .= '<p>Queries:<br />';
+				foreach($mvc->database->GetQueries() as $key => $val)
+				{
+					$html .= $val."<br />";
+				}
+				$html .= "</p>";
 			}
-			$html .= "</p>";
 		}
 		
 		$html .= $mvc->GetExceptionMessages();

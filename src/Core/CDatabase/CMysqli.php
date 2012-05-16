@@ -1,6 +1,6 @@
 <?php
 
-require_once(MVC_INSTALL_PATH.'/src/Core/CDatabase/IDBDriver.php');
+require_once(MVC_CORE_PATH.'/CDatabase/IDBDriver.php');
 
 class CMysqli implements IDBDriver
 {
