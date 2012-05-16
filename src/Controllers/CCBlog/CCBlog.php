@@ -23,7 +23,7 @@ class CCBlog extends CObject implements IController
 	{
 		$content = new CMContent();
 		$this->views->SetTitle('Blog');
-		$this->views->AddView('Blog/index.tpl.php', array(
+		$this->views->AddView('blog/index.tpl.php', array(
 			'contents'	=> $content->ListAll('post','id',true,array('deleted'=>null)),
 			),
 		'primary'

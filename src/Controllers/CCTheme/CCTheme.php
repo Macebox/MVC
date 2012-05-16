@@ -23,7 +23,7 @@ class CCTheme extends CObject implements IController
 	public function Index()
 	{
 		$this->views->SetTitle('Theme');
-		$this->views->AddView('Theme/index.tpl.php', array(
+		$this->views->AddView('theme/index.tpl.php', array(
 			'theme_name'	=> $this->config['theme']['name'],
 			),
 		'primary'
@@ -37,7 +37,7 @@ class CCTheme extends CObject implements IController
 	public function Test()
 	{
 		$this->views->SetTitle('Testing theme formatting');
-		$this->views->AddView('Theme/h1h6.tpl.php',array(),'primary');
+		$this->views->AddView('theme/h1h6.tpl.php',array(),'primary');
 	}
 	
 	/**

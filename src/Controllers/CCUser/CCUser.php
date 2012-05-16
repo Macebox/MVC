@@ -22,7 +22,7 @@ class CCUser extends CObject implements IController
 	public function Index()
 	{
 		$this->views->SetTitle('User Profile');
-		$this->views->AddView('User/index.tpl.php', array(
+		$this->views->AddView('user/index.tpl.php', array(
 			'is_authenticated'	=> $this->user->IsAuthenticated(),
 			'user'				=> $this->user->GetUserProfile(),
 			'allow_create_user'	=> $this->config['create_new_users'],
@@ -64,7 +64,7 @@ class CCUser extends CObject implements IController
 		$form->Check();
 
 		$this->views->SetTitle('Login');
-		$this->views->AddView('User/login.tpl.php', array(
+		$this->views->AddView('user/login.tpl.php', array(
 			'login_form'		=> $form->GetHTML(),
 			'allow_create_user'	=> $this->config['create_new_users'],
 			),
@@ -170,7 +170,7 @@ class CCUser extends CObject implements IController
 		$userProfileForm->Check();
 		
 		$this->views->SetTitle('Profile');
-		$this->views->AddView('User/profile.tpl.php', array(
+		$this->views->AddView('user/profile.tpl.php', array(
 			'profileForm'		=> $profileForm->GetHTML().$userProfileForm->GetHTMl(),
 			'user'				=> $this->user->GetUserProfile(),
 			'is_authenticated'	=> $this->user->IsAuthenticated(),
@@ -230,7 +230,7 @@ class CCUser extends CObject implements IController
 		$form->Check();
 
 		$this->views->SetTitle('Create user');
-		$this->views->AddView('User/create.tpl.php', array(
+		$this->views->AddView('user/create.tpl.php', array(
 			'register_form'		=> $form->GetHTML(),
 			'allow_create_user'	=> $this->config['create_new_users'],
 			),

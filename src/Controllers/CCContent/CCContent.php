@@ -22,7 +22,7 @@ class CCContent extends CObject implements IController
 	{
 		$content = new CMContent();
 		$this->views->SetTitle('Content Controller');
-		$this->views->AddView('Content/index.tpl.php', array(
+		$this->views->AddView('content/index.tpl.php', array(
 			'contents'	=> $content->ListAll(null),
 			),
 		'primary'
@@ -94,7 +94,7 @@ class CCContent extends CObject implements IController
 		
 		$title = isset($id) ? 'Edit' : 'Create';
 		$this->views->SetTitle("{$title} content: {$id}");
-		$this->views->AddView('Content/edit.tpl.php', array(
+		$this->views->AddView('content/edit.tpl.php', array(
 			'user'		=> $this->user,
 			'content'	=> $content,
 			'form'		=> $form,
