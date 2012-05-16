@@ -11,10 +11,10 @@ function autoload($aClassName)
 	$srcPath = MVC_INSTALL_PATH . "/src/";
 	
 	$files = array(
-		MVC_SITE_PATH	. "/controllers/{$classFile}",
-		MVC_SITE_PATH	. "/models/{$classFile}",
-		$srcPath		. "/controllers/{$classFile}",
-		$srcPath		. "/models/{$classFile}",
+		MVC_SITE_PATH	. "/Controllers/{$classFile}",
+		MVC_SITE_PATH	. "/Models/{$classFile}",
+		$srcPath		. "/Controllers/{$classFile}",
+		$srcPath		. "/Models/{$classFile}",
 		MVC_CORE_PATH	. "/{$classFile}",
 	);
 	
