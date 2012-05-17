@@ -117,7 +117,7 @@ $mvc->config['theme'] = array(
 	);
 
 $mvc->config['base_url'] = '';
-$mvc->config['url_type'] = 1;
+$mvc->config['url_type'] = 2;
 $mvc->config['database'] = array(
 	'active' => true,
 	'dsn' => '',
