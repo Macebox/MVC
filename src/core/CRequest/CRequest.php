@@ -49,6 +49,11 @@ class CRequest
 			$request = substr($_SERVER['REQUEST_URI'], strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'))+1);
 		}
 		
+		if (empty($request))
+		{
+			$request='index';
+		}
+		
 		if (is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled'])
 		{
 			$request = $routing[$request]['url'];
