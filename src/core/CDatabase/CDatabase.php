@@ -29,7 +29,7 @@ class CDatabase implements IDBDriver
 	
 	public function __construct($driver, $host, $username = null, $password = null, $dbName=null, $mode=null)
 	{
-		if ($driver=='Mysqli')
+		if ($driver=='Mysqli' && CNocturnal::Instance()->config['database']['enabled'])
 		{
 			$this->db = new CMysqli($host, $username, $password, $dbName);
 		}
