@@ -135,6 +135,7 @@ EOD;
 		$this->config['controllers']['index']['enabled'] = false;
 		$this->config['session_key'] = $this->config['theme']['data']['header'];
 		$this->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
+		$this->config['url_type'] = 1;
 		
 		$basicUrl = null;
 		
