@@ -143,10 +143,6 @@ $mvc->config['navbar'] = array(
 		'text' => 'Me',
 		'url' => 'me',
 		),
-	'presentation' => array(
-		'text' => 'Redovisning',
-		'url' => 'presentation',
-		),
 	'guestbook' => array(
 		'text' => 'Guestbook',
 		'url' => 'guestbook',
