@@ -77,7 +77,7 @@
 
 <div id='outer-wrap-footer'>
   <div id='inner-wrap-footer'>
-    <div id='footer'><?=$footer?><?=get_debug()?></div>
+    <div id='footer'><p><?=$footer?></p><?=get_debug()?></div>
   </div>
 </div>
 

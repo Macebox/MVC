@@ -125,14 +125,14 @@ class CRequest
 	*
 	*/
 	
-	public function CreateUrl($url=null)
+	public function CreateUrl($url=null, $type=null)
 	{
 		$prepend = $this->base_url;
-		if (isset($this->cleanUrl) && $this->cleanUrl)
+		if ((isset($this->cleanUrl) && $this->cleanUrl && $type==null) || $type==1)
 		{
 			;
 		}
-		else if (isset($this->queryStringUrl) && $this->queryStringUrl)
+		else if ((isset($this->queryStringUrl) && $this->queryStringUrl && $type==null) || $type==2)
 		{
 			$prepend .= 'index.php?q=';
 		}

@@ -66,6 +66,55 @@ class CFormElement implements ArrayAccess{
 	else if($type && $this['type'] == 'textarea') {
 		return "<p><label for='$id'>$label</label><br><textarea {$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
 	}
+	else if($type && $this['type'] == 'select') {
+		$ret = "<p><label for='$id'>$label</label><br><select {$class}{$name}>";
+		
+		if (isset($this['options']) && is_array($this['options']))
+		{
+			foreach($this['options'] as $opt)
+			{
+				$value = (is_array($opt)&&isset($opt['value']))?$opt['value']:$opt;
+				$selected = (is_array($opt)&&isset($opt['selected']))?"selected='".$opt['selected']."'":null;
+				$ret .= "<option {$selected}>{$value}</option>";
+			}
+		}
+		
+		$ret .= "</select></p>\n";
+		return $ret;
+	}
+	else if($type && $this['type'] == 'checkboxgroup')
+	{
+		$ret = "<p><label for='$id'>$label</label><br></p>";
+		
+		if (isset($this['options']) && is_array($this['options']))
+		{
+			$columns = isset($this['columns'])?$this['columns']:3;
+			$i = 0;
+			$ret .= "<table>\n<tr>\n";
+			foreach($this['options'] as $col)
+			{
+				$value		= is_array($col)											? $col['value']						: $col;
+				$checked	= (is_array($col)&&isset($col['checked'])&&$col['checked'])	? "checked='".$col['checked']."'"	: null;
+				$label		= (is_array($col)&&isset($col['label']))					? $col['label']						: $value;
+				if ($i==$columns)
+				{
+					$ret .= "</tr>\n<tr>\n";
+					$i=0;
+				}
+				$ret .= "<td><input type='checkbox' name='{$this['name']}[]' {$checked} value='{$value}' />{$label}</td>";
+				$i++;
+			}
+			$ret .= "</table>\n";
+		}
+		return $ret;
+	} else if ($type && $this['type']=='heading')
+	{
+		return "<h2>{$this['name']}</h2>\n";
+	} else if ($type && $this['type']=='checkbox')
+	{
+		$checked = (isset($this['checked']) && $this['checked'])?" checked='checked'":null;
+		return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled}{$checked} />{$messages}</p>\n";			  
+	}
 	else {
       return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />{$messages}</p>\n";			  
     }
@@ -212,6 +261,46 @@ class CFormElementTextArea extends CFormElement {
   }
 }
 
+class CFormElementSelect extends CFormElement
+{
+	public function __construct($name, $attributes=array())
+	{
+		parent::__construct($name, $attributes);
+		$this['type'] = 'select';
+		$this->UseNameAsDefaultLabel();
+	}
+}
+
+class CFormElementCheckboxGroup extends CFormElement
+{
+	public function __construct($name, $attributes=array())
+	{
+		parent::__construct($name, $attributes);
+		$this['type'] = 'checkboxgroup';
+		$this->UseNameAsDefaultLabel();
+	}
+}
+
+class CFormElementCheckbox extends CFormElement
+{
+	public function __construct($name, $attributes=array())
+	{
+		parent::__construct($name, $attributes);
+		$this['type'] = 'checkbox';
+		$this->UseNameAsDefaultLabel();
+	}
+}
+
+class CFormElementHeading extends CFormElement
+{
+	public function __construct($name, $attributes=array())
+	{
+		parent::__construct($name, $attributes);
+		$this['type'] = 'heading';
+		$this->UseNameAsDefaultLabel();
+	}
+}
+
 /**
 * Class for creation of forms and handling their validation.
 *
@@ -315,8 +404,7 @@ EOD;
     foreach($this->elements as $element) {
 	  if (isset($element))
 	  {
-        // Wrap buttons in buttonbar.
-        if(!$buttonbar && $element['type'] == 'submit') {
+		if(!$buttonbar && $element['type'] == 'submit') {
           $buttonbar = true;
           $html .= "<p>";
         } else if($buttonbar && $element['type'] != 'submit') {
@@ -326,6 +414,10 @@ EOD;
 		$html .= $element->GetHTML();
 	  }
     }
+	if ($buttonbar)
+	{
+		$html .= "</p>\n";
+	}
     return $html;
   }
   

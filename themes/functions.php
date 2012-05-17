@@ -70,10 +70,10 @@ function current_url()
 *	Create an url
 */
 
-function create_url($url)
+function create_url($url, $type=null)
 {
 	$mvc = CNocturnal::Instance();
-	return $mvc->request->CreateUrl($url);
+	return $mvc->request->CreateUrl($url, $type);
 }
 
 /**

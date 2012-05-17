@@ -106,7 +106,7 @@ th{vertical-align:bottom;font-weight:bold;text-align:left;}
 th,td{padding:5px 10px 5px 5px;}
 tbody tr:nth-child(even) td, tbody tr.even td {}
 tbody tr{border-bottom:1px solid #eee;
-  &:hover{color:#000;}
+  &:hover{color:#FFF;}
 }
 tfoot{font-style:italic;}
 

@@ -10,4 +10,4 @@
 
 <p>cd MVC; chmod 777 site/Data</p>
 
-You also need to <a href="<?=create_url('modules/install')?>">install</a> some modules.
+You also need to <a href="<?=create_url('configure', 2)?>">install</a> it.
