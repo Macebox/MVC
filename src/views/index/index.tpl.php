@@ -8,6 +8,6 @@
 
 <h2>Install:</h2>
 
-<p>cd MVC; chmod 777 site/Data</p>
+<p>cd MVC; chmod 777 site/Data and site/config.php</p>
 
 You also need to <a href="<?=create_url('configure', 2)?>">install</a> it.
