@@ -127,9 +127,12 @@ ini_set('display_errors', 1);
 EOD;
 		/*********************** Check if comment-file exists***********************/
 		
-		if (file_exists(MVC_SITE_PATH . '/config.comments.php'))
+		foreach($this->config['commentfiles'] as $value)
 		{
-			require_once(MVC_SITE_PATH . '/config.comments.php');
+			if (file_exists(MVC_SITE_PATH . $value))
+			{
+				require_once(MVC_SITE_PATH . $value);
+			}
 		}
 		
 		if (!isset($configComments))

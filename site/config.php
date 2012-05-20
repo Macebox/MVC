@@ -283,3 +283,14 @@ $mvc->config['content'] = array(
 		),
 	);
 
+
+/**
+ * Mainly comments for the config file.
+ * 	config.comments.php			<- The one updated by the creator(do not edit, please ^^)
+ * 	site.config.comments.php	<- The user comment file
+ */
+$mvc->config['commentfiles'] = array(
+	'/config.comments.php',
+	'/site.config.comments.php',
+	);
+
