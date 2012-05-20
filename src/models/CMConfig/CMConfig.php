@@ -44,6 +44,14 @@ class CMConfig extends CObject
 				}
 			}
 			
+			foreach($this->config['routing'] as $key => $value)
+			{
+				if ($key == $class && $value['enabled'])
+				{
+					$url = $key;
+				}
+			}
+			
 			if ($class!="None" && $url!=null)
 			{
 				$this->config['navbar'][$url]				= array(
@@ -104,7 +112,7 @@ class CMConfig extends CObject
 		
 	}
 	
-	private function saveConfigToFile()
+	public function saveConfigToFile()
 	{
 		/****************************** Header for file **********************************/
 		$_CONFIGFILE = <<<EOD
@@ -117,13 +125,25 @@ class CMConfig extends CObject
 error_reporting(-1);
 ini_set('display_errors', 1);
 EOD;
+		/*********************** Check if comment-file exists***********************/
+		
+		if (file_exists(MVC_SITE_PATH . '/config.comments.php'))
+		{
+			require_once(MVC_SITE_PATH . '/config.comments.php');
+		}
+		
+		if (!isset($configComments))
+		{
+			$configComments = array();
+		}
+		
 		/****************************** Open file **********************************/
-		$filename = MVC_INSTALL_PATH . '/site/config.php';
+		$filename = MVC_SITE_PATH . '/config.php';
 		
 		$file = fopen($filename, 'w');
 		
 		fwrite($file, $_CONFIGFILE.PHP_EOL.PHP_EOL);
-		fwrite($file, COutputVariable::getRunnableVariable("mvc->config", $this->config));
+		fwrite($file, COutputVariable::getRunnableVariable("mvc->config", $this->config, $configComments));
 		
 		fclose($file);
 	}

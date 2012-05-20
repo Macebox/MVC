@@ -83,9 +83,11 @@ function getHTMLForNavigation($id)
 {
 	$mvc = CNocturnal::Instance();
 	$p = $mvc->request->controller;
+	$m = $mvc->request->method;
+	$a = $mvc->request->arguments;
 	foreach($mvc->config['navbar'] as $key => $item)
 	{
-		$selected = ($p == $item['url']) ? " class='selected'" : null;
+		$selected = ($p == $item['url'] || $mvc->request->routing==$item['url']) ? " class='selected'" : null;
 		@$html .= "<a href='{$mvc->request->CreateUrl($item['url'])}'{$selected}>{$item['text']}</a>\n";
 	}
 	return "<nav id='$id'>\n{$html}</nav>\n";

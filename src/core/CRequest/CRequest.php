@@ -54,23 +54,25 @@ class CRequest
 			$request='index';
 		}
 		
-		if (is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled'])
-		{
-			$request = $routing[$request]['url'];
-		}
-	 
 		// Remove the ?-part from the query when analysing controller/metod/arg1/arg2
 		$queryPos = strpos($request, '?');
 		if($queryPos !== false)
 		{
 			$request = substr($request, 0, $queryPos);
 		}
-	   
+		
 		// Check if request is empty and querystring link is set
 		if(empty($request) && isset($_GET['q']))
 		{
 			$request = trim($_GET['q']);
 		}
+		
+		if (is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled'])
+		{
+			$this->routing = $request;
+			$request = $routing[$request]['url'];
+		}
+		
 		$splits = explode('/', $request);
 	   
 		// Set controller, method and arguments
@@ -89,6 +91,7 @@ class CRequest
 		$this->current_url  = $currentUrl;
 		$this->request_uri  = $requestUri;
 		$this->script_name  = $scriptName;
+		$this->routing		= isset($this->routing)?$this->routing:null;
 		$this->request      = $request;
 		$this->splits		= $splits;
 		$this->controller	= $controller;

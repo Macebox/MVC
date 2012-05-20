@@ -24,7 +24,6 @@ class CCTheme extends CObject implements IController
 	{
 		$this->views->SetTitle('Theme');
 		$this->views->AddView('theme/index.tpl.php', array(
-			'theme_name'	=> $this->config['theme']['name'],
 			),
 		'primary'
 		);

@@ -18,7 +18,7 @@ controllers and their methods. You enable and disable controllers in
   <?php if(!empty($val)): ?>
   <ul>
   <?php foreach($val as $method): ?>
-    <li><a href='<?=create_url($key, $method)?>'><?=$method?></a></li>
+    <li><a href='<?=create_url($key.'/'.$method)?>'><?=$method?></a></li>
   <?php endforeach; ?>      
   </ul>
   <?php endif; ?>

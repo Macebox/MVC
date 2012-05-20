@@ -22,8 +22,11 @@ class CCContent extends CObject implements IController
 	{
 		$content = new CMContent();
 		$this->views->SetTitle('Content Controller');
+		$admin = $this->user->InGroup($this->config['CMUser-Groups']['admin']['acronym'])?true:false;
 		$this->views->AddView('content/index.tpl.php', array(
 			'contents'	=> $content->ListAll(null),
+			'admin'		=> $admin,
+			'user'		=> $this->user->GetUserProfile(), 
 			),
 		'primary'
 		);
@@ -50,22 +53,38 @@ class CCContent extends CObject implements IController
 		$content	= new CMContent($id);
 		$save = isset($content['id'])? 'save' : 'create';
 		$enableRemove = (!isset($content['deleted']));
+		
+		$typeA = $this->config['content']['types'];
+		
+		if ($id!=null)
+		{
+			$typeA[$content['type']] = array('value' => $content['type'], 'selected' => 'selected');
+		}
+		
+		$filterA = $this->config['content']['filter'];
+		
+		if ($id!=null)
+		{
+			$filterA[$content['filter']] = array('value' => $content['filter'], 'selected' => 'selected');
+		}
+		
 		$form = new CForm(array('name'=>'editForm', 'action'=>$this->request->CreateUrl("content/edit/{$id}")),array(
 			'title'		=> new CFormElementText('title', array(
 				'value'		=> $content['title'],
 				)),
 			'key'		=> new CFormElementText('key', array(
+				'label'		=> 'Key:*',
 				'value'		=> $content['key'],
 				)),
 			'data'		=> new CFormElementTextArea('data', array(
 				'label'		=> 'Content:',
 				'value'		=> $content['data'],
 				)),
-			'type'		=> new CFormElementText('type', array(
-				'value'		=> $content['type'],
+			'type'		=> new CFormElementSelect('type', array(
+				'options'	=> $typeA,
 				)),
-			'filter'	=> new CFormElementText('filter', array(
-				'value'		=> $content['filter'],
+			'filter'	=> new CFormElementSelect('filter', array(
+				'options'	=> $filterA,
 				)),
 			$save		=> new CFormElementSubmit($save, array(
 				'callback'		=> array($this, 'DoSave'),
@@ -93,11 +112,14 @@ class CCContent extends CObject implements IController
 		}
 		
 		$title = isset($id) ? 'Edit' : 'Create';
+		
+		$admin = $this->user->InGroup($this->config['CMUser-Groups']['admin']['acronym'])?true:false;
 		$this->views->SetTitle("{$title} content: {$id}");
 		$this->views->AddView('content/edit.tpl.php', array(
 			'user'		=> $this->user,
 			'content'	=> $content,
 			'form'		=> $form,
+			'admin'		=> $admin,
 			),
 		'primary'
 		);

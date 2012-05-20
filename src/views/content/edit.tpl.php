@@ -9,6 +9,10 @@
 
 <?=$form->GetHTML(array('class'=>'content-edit'))?>
 
+<p class="smaller-text">
+* The key will be used for routing if the content is of type page. Be aware of this so you don't accidentaly overwrite a controllers route.
+</p>
+
 <p class='smaller-text'><em>
 <?php if($content['created']): ?>
   This content were created by <?=$content['owner']?> at <?=$content['created']?>.

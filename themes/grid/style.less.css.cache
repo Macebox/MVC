@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Shojumaru");
+a:4:{s:4:"root";s:49:"C:\wamp\www\phpmvc\MVC/themes/grid/style.less.css";s:8:"compiled";s:9769:"@import url("http://fonts.googleapis.com/css?family=Shojumaru");
 body {
   width:100%;
   *zoom:1;
@@ -448,3 +448,4 @@ a:focus {
   margin-bottom:0;
 }
 .strike { text-decoration:line-through; }
+";s:5:"files";a:2:{s:49:"C:\wamp\www\phpmvc\MVC\themes\grid\style.less.css";i:1337291962;s:73:"C:\wamp\www\phpmvc\MVC\themes\grid\semantic.gs\stylesheets\less\grid.less";i:1337097895;}s:7:"updated";i:1337291966;}
