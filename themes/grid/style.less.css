@@ -87,8 +87,6 @@ em,dfn{font-style:italic;}
 pre{margin-bottom:1.375em;white-space:pre;}
 pre,code,tt,.code {font:1em/1.375 @font-family-monospace;}
 
-code {overflow: auto;}
-
 /* Lists */
 li ul,li ol{margin:0;}
 ul,ol{margin:0.6875em 1.5em 1.375em 0;padding-left:1.5em;}
@@ -366,7 +364,9 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
 	white-space:normal;
 }
 
-.code dt
+.codeWindow code {overflow: auto; display: block; height: 230px;}
+
+.codeWindow dt
 {
 	border-bottom: 1px solid black;
 	margin-bottom: 5px;

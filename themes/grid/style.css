@@ -448,18 +448,22 @@ a:focus {
   margin-bottom:0;
 }
 .strike { text-decoration:line-through; }
-.code {
-  width:80%;
-  max-height:200px;
+.codeWindow {
+  width:100%;
+  max-height:250px;
   border:2px solid #05a696;
   background-color:white;
   padding:10px;
   color:blue;
   font-size:12px;
-  overflow-y:auto;
   white-space:normal;
 }
-.code dt {
+.codeWindow code {
+  overflow:auto;
+  display:block;
+  height:230px;
+}
+.codeWindow dt {
   border-bottom:1px solid black;
   margin-bottom:5px;
   color:black;
