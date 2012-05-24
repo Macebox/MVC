@@ -5,6 +5,7 @@
   <title><?=$title?></title>
   <link rel='shortcut icon' href='<?=theme_url($favicon)?>'/>
   <link rel='stylesheet' href='<?=$stylesheet?>'/>
+  <script src='scripts/main.js' type='text/javascript'></script>
   <?php if(isset($inline_style)): ?><style><?=$inline_style?></style><?php endif; ?>
 </head>
 <body>

@@ -351,3 +351,53 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
 }
 
 .strike {text-decoration: line-through;}
+
+.code
+{
+	width: 80%;
+	max-height: 200px;
+	border: 2px solid @bgcolor2;
+	background-color: white;
+	padding: 10px;
+	color: blue;
+	font-size: 12px;
+	overflow-y: auto;
+	white-space:normal;
+}
+
+.code dt
+{
+	border-bottom: 1px solid black;
+	margin-bottom: 5px;
+	color: black;
+}
+
+.codeTag
+{
+	color: #A16030;
+}
+
+.codeVariable
+{
+	color: #00AAAA;
+}
+
+.codeNumber
+{
+	color: #378091;
+}
+
+.codeQuote
+{
+	color: #45A120;
+}
+
+.codeComment
+{
+	color: orange;
+}
+
+.codeFunction
+{
+	color: black;
+}

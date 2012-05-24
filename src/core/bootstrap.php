@@ -68,7 +68,11 @@ function bbcode2html($text) {
     '/\[u\](.*?)\[\/u\]/is',
     '/\[img\](https?.*?)\[\/img\]/is',
     '/\[url\](https?.*?)\[\/url\]/is',
-    '/\[url=(https?.*?)\](.*?)\[\/url\]/is'
+    '/\[url=(https?.*?)\](.*?)\[\/url\]/is',
+	'/\[quote\](.*?)\[\/quote\]/is',
+	"/\[code\](.*?)\[\/code\]/es",
+	'/\[size=(.*?)\](.*?)\[\/size\]/is',
+	'/\[color=(.*?)\](.*?)\[\/color\]/is',
     );   
   $replace = array(
     '<strong>$1</strong>',
@@ -76,7 +80,43 @@ function bbcode2html($text) {
     '<u>$1</u>',
     '<img src="$1" />',
     '<a href="$1">$1</a>',
-    '<a href="$1">$2</a>'
+    '<a href="$1">$2</a>',
+	'<blockquote>$1</blockquote>',
+	"code2html('$1')",
+	'<span style="font-size: $1px;">$2</span>',
+	'<span style="color: $1;">$2</span>',
     );     
   return preg_replace($search, $replace, $text);
+}
+
+function code2html($text)
+{
+	$search = array(
+	'/\&amp\;lt\;\?php/',
+	'/\&amp\;lt\;\?/',
+	'/\?\&amp\;gt\;/',
+	'/\&amp\;#36\;([a-zA-Z0-9]*)/',
+	'/\/\/(.*\\n)/',
+	'/\'(.*?)\'/',
+	'/([0-9]+)/',
+	'/\/\*(.*)\*\//s',
+	'/function/',
+	'/(\\r\\n|\\r|\\n)/',
+	'/\\t/',
+	);
+	$replace = array(
+	'<span class="codeTag">&lt;?php</span>',
+	'<span class="codeTag">&lt;?</span>',
+	'<span class="codeTag">?&gt;</span>',
+	'<span class="codeVariable">\$$1</span>',
+	'<span class="codeComment">//$1</span>',
+	'<span class="codeQuote">\'$1\'</span>',
+	'<span class="codeNumber">$1</span>',
+	'<span class="codeComment">/*$1*/</span>',
+	'<span class="codeFunction">function</span>',
+	'<br/>',
+	'&nbsp; &nbsp;',
+	);
+	
+	return "<div class='code'><dt>Kod:</dt><code>".preg_replace($search, $replace, $text)."</code></div>";
 }
