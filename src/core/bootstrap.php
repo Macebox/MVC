@@ -20,12 +20,10 @@ function autoload($aClassName)
 	{
 		$files[] = MVC_SITE_PATH	. "/models/{$classFile}";
 		$files[] = $srcPath			. "/models/{$classFile}";
-	} else if (strpos($aClassName, 'CForm')!==FALSE || $aClassName=="CForm")
+	} else
 	{
 		$files[] = MVC_SITE_PATH	. "/forms/{$classFile}";
 		$files[] = $srcPath			. "/forms/{$classFile}";
-	} else
-	{
 		$files[] = MVC_CORE_PATH	. "/{$classFile}";
 	}
 	
