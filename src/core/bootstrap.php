@@ -116,7 +116,7 @@ function code2html($text)
 	'/parent/',
 	'/public/',
 	'/private/',
-	'/protected/'
+	'/protected/',
 	'/extends/',
 	'/implements/',
 	'/(\\r\\n|\\r|\\n)/',
