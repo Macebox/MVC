@@ -85,7 +85,9 @@ blockquote{margin-left:1em;margin-bottom:1.375em;}
 strong,dfn{font-weight:bold;}
 em,dfn{font-style:italic;}
 pre{margin-bottom:1.375em;white-space:pre;}
-pre,code,tt,.code {font:1em/1.375 @font-family-monospace; overflow: auto;}
+pre,code,tt,.code {font:1em/1.375 @font-family-monospace;}
+
+code {overflow: auto;}
 
 /* Lists */
 li ul,li ol{margin:0;}
