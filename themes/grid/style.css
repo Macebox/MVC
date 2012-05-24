@@ -146,7 +146,7 @@ input {
   color:white;
 }
 input:hover { border:1px solid ; }
-textarea {
+form textarea {
   background:#047f8c;
   border:1px solid transparent;
   border-radius:10px;
@@ -154,11 +154,11 @@ textarea {
   padding-left:10px;
   padding-right:10px;
   width:300px;
-  height:100px;
-  min-height:100px;
-  max-height:100px;
-  min-width:300px;
-  max-width:300px;
+  height:250px;
+  min-height:250px;
+  max-height:250px;
+  min-width:90%;
+  max-width:90%;
 }
 textarea:hover { border:1px solid ; }
 input[readonly] { color:#666666; }
@@ -473,4 +473,5 @@ a:focus {
 .codeNumber { color:#378091; }
 .codeQuote { color:#45a120; }
 .codeComment { color:orange; }
-.codeFunction { color:black; }
+.codeKeyword { color:black; }
+.codeClassKeyword { color:magenta; }

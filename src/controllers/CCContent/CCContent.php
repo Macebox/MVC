@@ -76,7 +76,7 @@ class CCContent extends CObject implements IController
 				'label'		=> 'Key:*',
 				'value'		=> $content['key'],
 				)),
-			'data'		=> new CFormElementTextArea('data', array(
+			'data'		=> new CFormElementEditContent('data', array(
 				'label'		=> 'Content:',
 				'value'		=> $content['data'],
 				)),

@@ -50,6 +50,7 @@ class CFormElement implements ArrayAccess{
     $type 	= isset($this['type']) ? " type='{$this['type']}'" : null;
     $value 	= isset($this['value']) ? " value='{$this['value']}'" : null;
 	$disabled = isset($this['disabled'])?" disabled='{$this['disabled']}'":null;
+	$onclick = isset($this['onclick'])?" onclick='{$this['disabled']}'":null;
 
     $messages = null;
     if(isset($this['validation_messages'])) {
@@ -61,7 +62,7 @@ class CFormElement implements ArrayAccess{
     }
     
     if($type && $this['type'] == 'submit') {
-      return "<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />\n";	
+      return "<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled}{$onclick} />\n";	
     }
 	else if($type && $this['type'] == 'textarea') {
 		return "<p><label for='$id'>$label</label><br><textarea {$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
@@ -299,6 +300,63 @@ class CFormElementHeading extends CFormElement
 		$this['type'] = 'heading';
 		$this->UseNameAsDefaultLabel();
 	}
+}
+
+class CFormElementEditContent extends CFormElement
+{
+	public function __construct($name, $attributes=array())
+	{
+		parent::__construct($name, $attributes);
+		$this['type'] = 'textarea';
+		$this->UseNameAsDefaultLabel();
+	}
+	
+	public function GetHTML() {
+    $id = isset($this['id']) ? $this['id'] : 'form-element-' . $this['name'];
+    $class = isset($this['class']) ? " {$this['class']}" : null;
+    $validates = (isset($this['validation-pass']) && $this['validation-pass'] === false) ? ' validation-failed' : null;
+    $class = (isset($class) || isset($validates)) ? " class='{$class}{$validates}'" : null;
+    $name = " name='{$this['name']}'";
+    $label = isset($this['label']) ? ($this['label'] . (isset($this['required']) && $this['required'] ? "<span class='form-element-required'>*</span>" : null)) : null;
+    $autofocus = isset($this['autofocus']) && $this['autofocus'] ? " autofocus='autofocus'" : null;    
+    $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;    
+    $type 	= isset($this['type']) ? " type='{$this['type']}'" : null;
+    $value 	= isset($this['value']) ? " value='{$this['value']}'" : null;
+	$disabled = isset($this['disabled'])?" disabled='{$this['disabled']}'":null;
+	$onclick = isset($this['onclick'])?" onclick='{$this['disabled']}'":null;
+
+    $messages = null;
+    if(isset($this['validation_messages'])) {
+      $message = null;
+      foreach($this['validation_messages'] as $val) {
+        $message .= "<li>{$val}</li>\n";
+      }
+      $messages = "<ul class='validation-message'>\n{$message}</ul>\n";
+    }
+		$ret = "<p><label for='$id'>$label</label><br>";
+		$bbcode = array(
+			'Bold'		=> 'b',
+			'Italic'	=> 'i',
+			'Underline'	=> 'u',
+			'Img'		=> 'img',
+			'Url'		=> 'url',
+			'Url='		=> 'url=',
+			'Quote'		=> 'quote',
+			'Code'		=> 'code',
+			'Size'		=> 'size',
+			'Color'		=> 'color',
+			);
+		
+		foreach($bbcode as $key => $value)
+		{
+			$ret .= "<input type='button' onclick=\"javascript:bbcode_ins('$id', '{$value}');\" value='{$key}'>";
+		}
+		
+		$ret .= "<br>";
+		
+		$ret .= "<textarea id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
+		return $ret;
+  }
 }
 
 /**

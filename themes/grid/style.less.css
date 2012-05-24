@@ -133,7 +133,7 @@ input:hover
   border: 1px solid @inputHoover;
 }
 
-textarea
+form textarea
 {
   background: @bgcolor4;
   border: 1px solid transparent;
@@ -142,11 +142,11 @@ textarea
   padding-left: 10px;
   padding-right: 10px;
   width: 300px;
-  height: 100px;
-  min-height: 100px;
-  max-height: 100px;
-  min-width: 300px;
-  max-width: 300px;
+  height: 250px;
+  min-height: 250px;
+  max-height: 250px;
+  min-width: 90%;
+  max-width: 90%;
 }
 
 textarea:hover
