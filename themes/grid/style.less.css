@@ -402,3 +402,8 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
 {
 	color: black;
 }
+
+.codeClassKeyword
+{
+	color: magenta;
+}
