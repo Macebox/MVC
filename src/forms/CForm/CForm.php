@@ -349,7 +349,7 @@ class CFormElementEditContent extends CFormElement
 		
 		foreach($bbcode as $key => $value)
 		{
-			$ret .= "<input type='button' onclick=\"javascript:bbcode_ins('$id', '{$value}');\" value='{$key}'>";
+			$ret .= "<input type='button' class='button' onclick=\"javascript:bbcode_ins('$id', '{$value}');\" value='{$key}'>";
 		}
 		
 		$ret .= "<br>";
