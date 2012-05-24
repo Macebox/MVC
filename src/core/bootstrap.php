@@ -120,5 +120,5 @@ function code2html($text)
 	'&nbsp; &nbsp;',
 	);
 	
-	return "<div class='codeWindow'><dt>Kod:</dt><code class='code'>".preg_replace($search, $replace, $text)."</code></div>";
+	return "<div class='codeWindow'><dt>Kod:</dt><code>".preg_replace($search, $replace, $text)."</code></div>";
 }
