@@ -362,6 +362,7 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
 	color: blue;
 	font-size: 12px;
 	overflow-y: auto;
+	overflow-x: auto;
 	white-space:normal;
 }
 
