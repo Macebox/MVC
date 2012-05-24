@@ -114,7 +114,7 @@ function code2html($text)
 	'<span class="codeQuote">\'$1\'</span>',
 	'<span class="codeNumber">$1</span>',
 	'<span class="codeComment">/*',
-	'</span>',
+	'*/</span>',
 	'<span class="codeFunction">function</span>',
 	'<br/>',
 	'&nbsp; &nbsp;',
