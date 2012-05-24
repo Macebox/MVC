@@ -1,1 +1,1 @@
-<h3>Actions</h3><ul><li><a href="<?=create_url('configure/configure', 2);?>">Configure</a></li><li><a href="<?=create_url('configure/install', 2);?>">Install</a></li></ul>
+<h3>Actions</h3><ul><li><a href="<?=create_url('configure/configure');?>">Configure</a></li><li><a href="<?=create_url('configure/install');?>">Install</a></li></ul>
