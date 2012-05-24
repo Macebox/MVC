@@ -20,7 +20,7 @@ function autoload($aClassName)
 	{
 		$files[] = MVC_SITE_PATH	. "/models/{$classFile}";
 		$files[] = $srcPath			. "/models/{$classFile}";
-	} else if (strpos($aClassName, 'CForm')!==FALSE)
+	} else if (strpos($aClassName, 'CForm')!==FALSE || $aClassName=="CForm")
 	{
 		$files[] = MVC_SITE_PATH	. "/forms/{$classFile}";
 		$files[] = $srcPath			. "/forms/{$classFile}";
@@ -103,9 +103,9 @@ function bbcode2html($text) {
 function code2html($text)
 {
 	$search = array(
-	'/\&amp\;lt\;\?php/',
-	'/\&amp\;lt\;\?/',
-	'/\?\&amp\;gt\;/',
+	'/\&lt\;\?php/',
+	'/\&lt\;\?/',
+	'/\?\&gt\;/',
 	'/\&amp\;#36\;([a-zA-Z0-9]*)/',
 	'/\/\/(.*\\n)/',
 	'/\'(.*?)\'/',
@@ -113,6 +113,12 @@ function code2html($text)
 	'/\/\*/',
 	'/\*\//',
 	'/function/',
+	'/parent/',
+	'/public/',
+	'/private/',
+	'/protected/'
+	'/extends/',
+	'/implements/',
 	'/(\\r\\n|\\r|\\n)/',
 	'/\\t/',
 	);
@@ -126,7 +132,13 @@ function code2html($text)
 	'<span class="codeNumber">$1</span>',
 	'<span class="codeComment">/*',
 	'*/</span>',
-	'<span class="codeFunction">function</span>',
+	'<span class="codeKeyword">function</span>',
+	'<span class="codeKeyword">parent</span>',
+	'<span class="codeKeyword">public</span>',
+	'<span class="codeKeyword">private</span>',
+	'<span class="codeKeyword">protected</span>',
+	'<span class="codeKeyword">extends</span>',
+	'<span class="codeKeyword">implements</span>',
 	'<br/>',
 	'&nbsp; &nbsp;',
 	);
