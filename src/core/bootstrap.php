@@ -10,13 +10,24 @@ function autoload($aClassName)
 	$classFile = "{$aClassName}/{$aClassName}.php";
 	$srcPath = MVC_INSTALL_PATH . "/src/";
 	
-	$files = array(
-		MVC_SITE_PATH	. "/controllers/{$classFile}",
-		MVC_SITE_PATH	. "/models/{$classFile}",
-		$srcPath		. "/controllers/{$classFile}",
-		$srcPath		. "/models/{$classFile}",
-		MVC_CORE_PATH	. "/{$classFile}",
-	);
+	$files = array();
+	
+	if (strpos($aClassName, 'CC')!==FALSE)
+	{
+		$files[] = MVC_SITE_PATH	. "/controllers/{$classFile}";
+		$files[] = $srcPath			. "/controllers/{$classFile}";
+	} else if (strpos($aClassName, 'CM')!==FALSE)
+	{
+		$files[] = MVC_SITE_PATH	. "/models/{$classFile}";
+		$files[] = $srcPath			. "/models/{$classFile}";
+	} else if (strpos($aClassName, 'CForm')!==FALSE)
+	{
+		$files[] = MVC_SITE_PATH	. "/forms/{$classFile}";
+		$files[] = $srcPath			. "/forms/{$classFile}";
+	} else
+	{
+		$files[] = MVC_CORE_PATH	. "/{$classFile}";
+	}
 	
 	foreach($files as $file)
 	{
