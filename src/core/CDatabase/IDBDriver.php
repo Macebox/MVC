@@ -31,7 +31,7 @@ interface IDBDriver
 	**/
 	
 	
-	public function Get($table, $columns, $equals, $order, $asc);
+	public function Get($table, $columns, $equals, $order, $asc, $distinct);
 	
 	public function Insert($table, $columns);
 	

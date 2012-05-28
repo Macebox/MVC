@@ -24,7 +24,7 @@ class CMysqli implements IDBDriver
 		return $this->db->query($q);
 	}
 	
-	public function Get($table, $columns, $equals, $order, $asc)
+	public function Get($table, $columns, $equals, $order, $asc, $distinct)
 	{
 		$ret = array();
 		if (!empty($this->db))
@@ -40,7 +40,7 @@ class CMysqli implements IDBDriver
 				{
 					$columnsSelected = $this->db->real_escape_string(implode(', ', $columns));
 				}
-				$query = 'SELECT '.$columnsSelected.' FROM '.$this->dbName.'.'.$table;
+				$query = 'SELECT '.($distinct?' DISTINCT ':'').$columnsSelected.' FROM '.$this->dbName.'.'.$table;
 				if (count($equals)>0)
 				{
 					$query .= ' WHERE '.$this->getEquals($equals);

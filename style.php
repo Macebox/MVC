@@ -1,19 +1,8 @@
 <?php
 /**
-* Compiles a less-file to a css-file using phpless.
-*
-* Uses a cache-file before compiling. Uses gzip. Caches the resulting css-file by using a HTTP-
-* header with Last-Modified.
-* Read more on less: http://lesscss.org/
-* Read more on lessphp: http://leafo.net/lessphp/
-* The code below were taken from the following two tutorials and then slightly modified to suite
-* my needs:
-* http://leafo.net/lessphp/docs/#php_interface
-* http://net.tutsplus.com/tutorials/php/how-to-squeeze-the-most-out-of-less/
-*
-* @author Mikael Roos mos@dbwebb.se
-* @example http://dbwebb.se/example/lessphp/
-*/
+ * Compiles a less-file to a css-file using phpless.
+ *
+ */
 // __DIRNAME__only available from PHP 5.3 and forward
 define('MVC_INSTALL_PATH', dirname(__FILE__));
 define('MVC_SITE_PATH', MVC_INSTALL_PATH . '/site');

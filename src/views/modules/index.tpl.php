@@ -2,8 +2,8 @@
 
 
 <h2>About</h2>
-<p><strong>Module Manager</strong> displays information on modules and enable managing of all Lydia modules. Lydia is made up of modules. Each module
-has its own subdirectory in the <code>src</code>-directory.</p>
+<p><strong>Module Manager</strong> displays information on modules and enable managing of all Nocturnal modules. Nocturnal is made up of modules. Each module
+has its own subdirectory in the <code>src/models or site/models</code>-directories.</p>
 
 
 <h2>Enabled controllers</h2>
