@@ -40,6 +40,7 @@ class CObject
 		{
 			$this->session->SetFlash('database_queries', $this->db->GetQueries());
 		}
+		$this->session->SetFlash('pageTimeStart', $this->session->__get('pageTimeStart'));
 		$this->session->StoreInSession();
 		header('Location: ' . $this->request->CreateUrl($urlOrController.'/'.$method));
 		exit;

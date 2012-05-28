@@ -6,9 +6,10 @@ function get_debug()
 {
 	$mvc = CNocturnal::Instance();
 	$html = "";
+	$html .= "<p>Page loaded in: ".number_format((microtime(true)-$mvc->session->__get('pageTimeStart')), 3)." seconds.</p>";
 	if (isset($mvc->config['debugEnabled']) && $mvc->config['debugEnabled'])
 	{
-		$html = "<h2>Debug:</h2>";
+		$html .= "<h2>Debug:</h2>";
 		if (isset($mvc->config['debug']['mvc']) && $mvc->config['debug']['mvc'])
 		{
 			$html .= "<h3>MVC:</h3><p>The content of the config array:</p><pre>" . htmlentities(print_r($mvc->config, true)) . "</pre>";
