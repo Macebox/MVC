@@ -227,7 +227,14 @@ class CMysqli implements IDBDriver
 						}
 						else
 						{
-							$subval = "='".$this->db->real_escape_string($subval)."'";
+							if (strpos($subval, '%'))
+							{
+								$subval = " LIKE '".$this->db->real_escape_string(substr($subval,0,-1))."'";
+							}
+							else
+							{
+								$subval = "='".$this->db->real_escape_string($subval)."'";
+							}
 						}
 						$eq .= $this->db->real_escape_string($subcol)."{$subval} OR ";
 					}
@@ -242,7 +249,14 @@ class CMysqli implements IDBDriver
 				}
 				else
 				{
-					$value = "='".$this->db->real_escape_string($value)."'";
+					if (strpos($value, '%'))
+					{
+						$value = " LIKE '".$this->db->real_escape_string(substr($value,0,-1))."'";
+					}
+					else
+					{
+						$value = "='".$this->db->real_escape_string($value)."'";
+					}
 				}
 				$eq = $this->db->real_escape_string($col)."{$value}";
 			}
