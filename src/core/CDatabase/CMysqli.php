@@ -227,7 +227,7 @@ class CMysqli implements IDBDriver
 						}
 						else
 						{
-							if (strpos($subval, '%'))
+							if (strpos($subval, '%')!==FALSE)
 							{
 								$subval = " LIKE '".$this->db->real_escape_string($subval)."'";
 							}
@@ -249,7 +249,7 @@ class CMysqli implements IDBDriver
 				}
 				else
 				{
-					if (strpos($value, '%'))
+					if (strpos($value, '%')!==FALSE)
 					{
 						$value = " LIKE '".$this->db->real_escape_string($value)."'";
 					}
