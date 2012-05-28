@@ -24,7 +24,7 @@ class CMysqli implements IDBDriver
 		return $this->db->query($q);
 	}
 	
-	public function Get($table, $columns, $equals, $order, $asc, $distinct)
+	public function Get($table, $columns, $equals, $order, $asc, $distinct, $limit)
 	{
 		$ret = array();
 		if (!empty($this->db))
@@ -63,6 +63,11 @@ class CMysqli implements IDBDriver
 					}
 					$query .= ' '.($asc?'ASC':'DESC');
 					
+				}
+				
+				if (isset($limit))
+				{
+					$query.= ' LIMIT '.$this->db->real_escape_string($limit);
 				}
 				
 				$this->queries[] = $query;

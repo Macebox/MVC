@@ -79,7 +79,7 @@ class CDatabase implements IDBDriver
 	*	-----> WHERE column='value' AND (column2='value2' OR column3='value3' OR (column2='value3'))
 	*/
 	
-	public function Get($table, $columns=array(), $equals=array(), $order=null, $asc=true, $distinct=false)
+	public function Get($table, $columns=array(), $equals=array(), $order=null, $asc=true, $distinct=false, $limit=null)
 	{
 		if (!empty($this->db))
 		{
@@ -90,7 +90,7 @@ class CDatabase implements IDBDriver
 			else
 			{
 				CDatabase::$numQueries += 1;
-				return $this->db->Get($table, $columns, $equals, $order, $asc, $distinct);
+				return $this->db->Get($table, $columns, $equals, $order, $asc, $distinct, $limit);
 			}
 		}
 		else
