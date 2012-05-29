@@ -1,4 +1,4 @@
-<h1>User Index</h1>
+<h2>User Index</h2>
 
 <p>
 

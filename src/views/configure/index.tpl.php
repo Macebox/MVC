@@ -1,1 +1,1 @@
-<h1>Installation process</h1><p>In the menu to the left you are able to see the available actions.</p><h2>For first time installation:</h2><p>First click on the link configure to configure the site.</p><p>Then click on install to install modules. *Requires db-configuration*</p>
+<h2>Installation process</h2><p>In the menu to the left you are able to see the available actions.</p><h3>For first time installation:</h3><p>First click on the link configure to configure the site.</p><p>Then click on install to install modules. *Requires db-configuration*</p>

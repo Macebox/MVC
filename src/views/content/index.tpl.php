@@ -1,7 +1,7 @@
-<h1>Content Controller Index</h1>
+<h2>Content Controller Index</h2>
 <p>One controller to manage the actions for content, mainly list, create, edit, delete, view.</p>
 
-<h2>All content</h2>
+<h3>All content</h3>
 <?php if($contents != null):?>
   <ul>
   <?php foreach($contents as $val):?>
@@ -14,7 +14,7 @@
 
 <?php if($admin):?>
 
-<h2>Actions</h2>
+<h4>Actions</h4>
 <ul>
   <li><a href='<?=create_url('content/create')?>'>Create new content</a>
 </ul>

@@ -1,4 +1,4 @@
-<h1>Install modules</h1>
+<h2>Install modules</h2>
 
 <p>The following modules were affected by this action.</p>
 

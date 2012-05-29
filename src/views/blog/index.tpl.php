@@ -1,4 +1,4 @@
-<h1>Blog</h1>
+<h2>Blog</h2>
 <p>All blog-like list of all content with the type "post", <a href='<?=create_url("content")?>'>view all content</a>.</p>
 
 <?php if($contents != null):?>

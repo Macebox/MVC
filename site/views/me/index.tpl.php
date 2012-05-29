@@ -1,4 +1,4 @@
-<h1>Om mig själv</h1>
+<h2>Om mig själv</h2>
 
 <figure class="right top" style="width: auto;">
 <img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>site/data/me/do_all_work.png" alt="Do all work?" style="width: 213; height: 240;"/>

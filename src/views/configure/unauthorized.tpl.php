@@ -1,1 +1,1 @@
-<h1>Error</h1>You are not authorized to view this content.
+<h2>Error</h2>You are not authorized to view this content.

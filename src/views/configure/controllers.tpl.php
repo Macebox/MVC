@@ -1,1 +1,1 @@
-<h1>Manage controllers:</h1><?=$form?>
+<h2>Manage controllers:</h2><?=$form?>

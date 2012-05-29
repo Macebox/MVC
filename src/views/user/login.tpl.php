@@ -1,3 +1,4 @@
+<h2>Login</h2>
 <?=$login_form;?>
 
 <p>

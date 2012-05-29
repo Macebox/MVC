@@ -1,8 +1,8 @@
 <?php if($content['created']): ?>
-  <h1>Edit Content</h1>
+  <h2>Edit Content</h2>
   <p>You can edit and save this content.</p>
 <?php else: ?>
-  <h1>Create Content</h1>
+  <h2>Create Content</h2>
   <p>Create new content.</p>
 <?php endif; ?>
 

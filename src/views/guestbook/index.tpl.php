@@ -1,4 +1,4 @@
-<h1>Guestbook</h1><p>Nocturnal's guestbook.</p>
+<h2>Guestbook</h2><p>Nocturnal's guestbook.</p>
 
 <?=$GuestbookForm?>
 
