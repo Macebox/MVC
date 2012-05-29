@@ -112,6 +112,37 @@ class CMConfig extends CObject
 		
 	}
 	
+	public function ApplyControllers($form)
+	{
+		$cons = $this->getControllers();
+		
+		foreach($cons as $controllers)
+		{
+			if (isset($form[$controllers]['value']))
+			{
+				if (!empty($form[$controllers.'-old-url']['value']))
+				{
+					unset($this->config['controllers'][$form[$controllers.'-old-url']['value']]);
+				}
+				if (!empty($form[$controllers.'-url']['value']))
+				{
+					$this->config['controllers'][$form[$controllers.'-url']['value']] = array('enabled' => true, 'class' => $controllers);
+				}
+			}
+			else if (!empty($form[$controllers.'-url']['value']))
+			{
+				if (!empty($form[$controllers.'-old-url']['value']))
+				{
+					unset($this->config['controllers'][$form[$controllers.'-old-url']['value']]);
+				}
+				
+				$this->config['controllers'][$form[$controllers.'-url']['value']] = array('enabled' => false, 'class' => $controllers);
+			}
+		}
+		
+		$this->saveConfigToFile();
+	}
+	
 	public function saveConfigToFile()
 	{
 		/****************************** Header for file **********************************/
@@ -191,5 +222,21 @@ EOD;
 		/****************************** OUTPUT TO site/config.php **********************************/
 		
 		$this->saveConfigToFile();
+	}
+	
+	private function getControllers()
+	{
+		$ret = array();
+		$tmp = new CMModules();
+		
+		foreach($tmp->ReadAndAnalyse() as $key => $array)
+		{
+			if ($array['isController'])
+			{
+				$ret[] = $key;
+			}
+		}
+		
+		return $ret;
 	}
 }
