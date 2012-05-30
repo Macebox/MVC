@@ -57,6 +57,11 @@ class CCTheme extends CObject implements IController
 		}
 	}
 	
+	/**
+	 * Shows all regions on screen
+	 * 
+	 * 
+	 */
 	public function AllRegions()
 	{
 		$this->views->SetTitle('Theme display content for all regions');

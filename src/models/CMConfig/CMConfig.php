@@ -13,6 +13,12 @@ class CMConfig extends CObject
 		parent::__construct();
 	}
 	
+	/**
+	 * Applies configuration
+	 * 
+	 * @param CForm to be processed
+	 */
+	
 	public function ApplyConfig($form)
 	{
 		/****************************** Theme **********************************/
@@ -112,6 +118,12 @@ class CMConfig extends CObject
 		
 	}
 	
+	/**
+	 * Applies controller-configuration
+	 * 
+	 * @param CForm to be processed
+	 */
+	
 	public function ApplyControllers($form)
 	{
 		$cons = $this->getControllers();
@@ -142,6 +154,12 @@ class CMConfig extends CObject
 		
 		$this->saveConfigToFile();
 	}
+	
+	/**
+	 * Saves the config array to file
+	 * 
+	 * 
+	 */
 	
 	public function saveConfigToFile()
 	{
@@ -181,6 +199,12 @@ EOD;
 		
 		fclose($file);
 	}
+	
+	/**
+	 * Completes installation
+	 * 
+	 * 
+	 */
 	
 	public function Complete()
 	{
@@ -224,6 +248,13 @@ EOD;
 		$this->saveConfigToFile();
 	}
 	
+	/**
+	 * Returns availabe menus from routings and controllers.
+	 * Selects currently chosen.
+	 * 
+	 * @param Integer menu-id
+	 */
+	
 	public function getMenus($id)
 	{
 		$ret = array();
@@ -266,6 +297,12 @@ EOD;
 		return $ret;
 	}
 	
+	/**
+	 * Returns debug-settings.
+	 * 
+	 * 
+	 */
+	
 	public function getDebugSettings()
 	{
 		$ret = array();
@@ -277,6 +314,11 @@ EOD;
 		
 		return $ret;
 	}
+	/**
+	 * Returns available database drivers.
+	 * 
+	 * 
+	 */
 	
 	public function getDatabaseDrivers()
 	{
@@ -297,6 +339,12 @@ EOD;
 		return $ret;
 	}
 	
+	/**
+	 * Returns text for the current navigation item.
+	 * 
+	 * @param Integer navigation-id
+	 */
+	
 	public function getNavText($id)
 	{
 		$ret = null;
@@ -316,6 +364,12 @@ EOD;
 		
 		return $ret;
 	}
+	
+	/**
+	 * Returns all navbars.
+	 * 
+	 * 
+	 */
 	
 	public function getNavbars()
 	{
@@ -339,6 +393,12 @@ EOD;
 		return $ret;
 	}
 	
+	/**
+	 * Returns array of themes.
+	 * Selects current one.
+	 * 
+	 */
+	
 	public function getThemes()
 	{
 		$ret = array();
@@ -361,6 +421,12 @@ EOD;
 		return $ret;
 	}
 	
+	/**
+	 * Returns all controllers
+	 * 
+	 * 
+	 */
+	
 	public function getControllers()
 	{
 		$ret = array();
@@ -376,6 +442,12 @@ EOD;
 		
 		return $ret;
 	}
+	
+	/**
+	 * Returns all timezones as array.
+	 * 
+	 * 
+	 */
 	
 	public function getTimezones()
 	{
@@ -406,6 +478,12 @@ EOD;
 		return $ret;
 	}
 	
+	/**
+	 * Returns active(enabled) controllers.
+	 * 
+	 * 
+	 */
+	
 	public function getActiveControllers()
 	{
 		$ret = array();
@@ -431,6 +509,12 @@ EOD;
 		
 		return $ret;
 	}
+	
+	/**
+	 * Returns inactive(disabled) controllers.
+	 * 
+	 * 
+	 */
 	
 	public function getInactiveControllers()
 	{
