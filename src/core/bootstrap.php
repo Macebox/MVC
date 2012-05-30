@@ -46,7 +46,7 @@ spl_autoload_register('autoload');
  * @param String new function name like 'bar($foo)' <-- Single quotes
  */
 
-function func_override($function, $newFunction, $args=array())
+function func_override($function, $newFunction, $args=null)
 {
 	override_function($function, $args, "return $newFunctions");
 	rename_function("__overridden__", $newFunction);
