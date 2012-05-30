@@ -6,12 +6,27 @@
 * @package NocturnalCMF
 */
 
-class CMUser extends CObject implements IModule
+class CMUser extends CObject implements IModule, ArrayAccess
 {
+	public $profile;
+	
 	public function __construct($mvc=null)
 	{
 		parent::__construct($mvc);
+		$profile = $this->session->GetAuthenticatedUser();
+		$this->profile = empty($profile) ? array() : $profile;
+		$this['isAuthenticated'] = empty($profile) ? false : true;
+		if(!$this['isAuthenticated'])
+		{
+			$this['id'] = 0;
+			$this['acronym'] = 'anonomous';
+		}
 	}
+	
+	public function offsetSet($offset, $value) { if (is_null($offset)) { $this->profile[] = $value; } else { $this->profile[$offset] = $value; }}
+	public function offsetExists($offset) { return isset($this->profile[$offset]); }
+	public function offsetUnset($offset) { unset($this->profile[$offset]); }
+	public function offsetGet($offset) { return isset($this->profile[$offset]) ? $this->profile[$offset] : null; }
 	
 	/**
 	* Manage method for the module.
@@ -260,6 +275,7 @@ class CMUser extends CObject implements IModule
 	public function Logout()
 	{
 		$this->session->UnsetAuthenticatedUser();
+		$this->profile = array();
 		$this->session->AddMessage('success', "You have logged out.");
 	}
 	
@@ -324,28 +340,6 @@ class CMUser extends CObject implements IModule
 	}
 	
 	/**
-	* Method which returns true if user is logged in.
-	*
-	*
-	*/
-	
-	public function IsAuthenticated()
-	{
-		return ($this->session->GetAuthenticatedUser() != false);
-	}
-	
-	/**
-	* Returns data about the user.
-	*
-	*
-	*/
-	
-	public function GetUserProfile()
-	{
-		return $this->session->GetAuthenticatedUser();
-	}
-	
-	/**
 	* Refreshes the user in the session.
 	*
 	*
@@ -390,11 +384,9 @@ class CMUser extends CObject implements IModule
 	
 	public function InGroup($groupAcronym)
 	{
-		if ($this->IsAuthenticated())
+		if ($this['isAuthenticated'])
 		{
-			$user = $this->session->GetAuthenticatedUser();
-			
-			return isset($user['groups'][$groupAcronym]);
+			return isset($this['groups'][$groupAcronym]);
 		}
 		
 		return FALSE;
@@ -408,11 +400,9 @@ class CMUser extends CObject implements IModule
 	
 	public function GetAcronym()
 	{
-		if ($this->IsAuthenticated())
+		if ($this['isAuthenticated'])
 		{
-			$user = $this->session->GetAuthenticatedUser();
-			
-			return $user['acronym'];
+			return $this->profile['acronym'];
 		}
 		
 		return null;

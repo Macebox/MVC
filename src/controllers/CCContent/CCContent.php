@@ -26,7 +26,7 @@ class CCContent extends CObject implements IController
 		$this->views->AddView('content/index.tpl.php', array(
 			'contents'	=> $content->ListAll(null),
 			'admin'		=> $admin,
-			'user'		=> $this->user->GetUserProfile(), 
+			'user'		=> $this->user, 
 			),
 		'primary'
 		);

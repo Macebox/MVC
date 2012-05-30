@@ -23,8 +23,8 @@ class CCUser extends CObject implements IController
 	{
 		$this->views->SetTitle('User Profile');
 		$this->views->AddView('user/index.tpl.php', array(
-			'is_authenticated'	=> $this->user->IsAuthenticated(),
-			'user'				=> $this->user->GetUserProfile(),
+			'is_authenticated'	=> $this->user['isAuthenticated'],
+			'user'				=> $this->user,
 			'allow_create_user'	=> $this->config['create_new_users'],
 			),
 		'primary'
@@ -110,7 +110,7 @@ class CCUser extends CObject implements IController
 	
 	public function Profile()
 	{
-		$user = $this->user->GetUserProfile();
+		$user = $this->user;
 		$profileForm = new CForm(array(
 			'action'	=> $this->request->CreateUrl('user/profile'),
 			),
@@ -172,8 +172,8 @@ class CCUser extends CObject implements IController
 		$this->views->SetTitle('Profile');
 		$this->views->AddView('user/profile.tpl.php', array(
 			'profileForm'		=> $profileForm->GetHTML().$userProfileForm->GetHTMl(),
-			'user'				=> $this->user->GetUserProfile(),
-			'is_authenticated'	=> $this->user->IsAuthenticated(),
+			'user'				=> $this->user,
+			'is_authenticated'	=> $this->user['isAuthenticated'],
 			),
 		'primary'
 		);

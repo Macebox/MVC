@@ -124,14 +124,14 @@ function get_messages_from_session()
 
 function get_gravatar($size=null)
 {
-	$user = CNocturnal::Instance()->user->GetUserProfile();
+	$user = CNocturnal::Instance()->user;
 	return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($user['email']))) . '.jpg?' . ($size ? "s=$size" : null);
 }
 
 function login_menu()
 {
 	$mvc = CNocturnal::Instance();
-	if($mvc->user->IsAuthenticated())
+	if($mvc->user['isAuthenticated'])
 	{
 		$items = "<img src='".get_gravatar(15)."'>";
 		$items .= "<a href='" . create_url('user/profile') . "'>" . $mvc->user->GetAcronym() . "</a> ";
