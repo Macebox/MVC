@@ -38,6 +38,20 @@ function autoload($aClassName)
 }
 spl_autoload_register('autoload');
 
+/**
+ * Override a function
+ * 
+ * @param String original function name like 'foo'
+ * @param String arguments like '$bar = null' or '$bar' <-- Single quotes
+ * @param String new function name like 'bar($foo)' <-- Single quotes
+ */
+
+function func_override($function, $newFunction, $args=array())
+{
+	override_function($function, $args, "return $newFunctions");
+	rename_function("__overridden__", $newFunction);
+}
+
 /*
 	Exception handler
 */

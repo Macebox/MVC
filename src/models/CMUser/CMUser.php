@@ -16,6 +16,7 @@ class CMUser extends CObject implements IModule, ArrayAccess
 		$profile = $this->session->GetAuthenticatedUser();
 		$this->profile = empty($profile) ? array() : $profile;
 		$this['isAuthenticated'] = empty($profile) ? false : true;
+		$this['isAuthenticated'] = $this->InGroup($this->config['CMUser-Groups']['user']['acronym']);
 		if(!$this['isAuthenticated'])
 		{
 			$this['id'] = 0;
@@ -211,9 +212,10 @@ class CMUser extends CObject implements IModule, ArrayAccess
 	* @param String password for the user
 	* @param String name for the user
 	* @param String email for the user
+	* @param Array list of groups the user should be in, defined in config.php
 	*/
 	
-	public function Create($acronym, $password, $name, $email)
+	public function Create($acronym, $password, $name, $email, $groups=array('user'))
 	{
 		$dateTime = date('o-m-d H:i:s');
 		$tmpU = $this->database->Get('user','',array(
@@ -244,18 +246,22 @@ class CMUser extends CObject implements IModule, ArrayAccess
 			
 			$userId = $user[0]['id'];
 			
-			$groupId = $this->database->Get('group',array('id'),array(
-				'acronym'	=> $this->config['CMUser-Groups']['user']['acronym']
-				)
-			);
-			$groupId = $groupId[0]['id'];
-			
-			$this->database->Insert('user2group',array(
-				'idUser'	=> $userId,
-				'idGroup'	=> $groupId,
-				'created'	=> $dateTime
-				)
-			);
+			foreach($groups as $group)
+			{
+				
+				$groupId = $this->database->Get('group',array('id'),array(
+					'acronym'	=> $this->config['CMUser-Groups'][$group]['acronym']
+					)
+				);
+				$groupId = $groupId[0]['id'];
+				
+				$this->database->Insert('user2group',array(
+					'idUser'	=> $userId,
+					'idGroup'	=> $groupId,
+					'created'	=> $dateTime
+					)
+				);
+			}
 			
 			return TRUE;
 		}
