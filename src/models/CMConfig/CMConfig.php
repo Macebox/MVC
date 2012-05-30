@@ -224,7 +224,144 @@ EOD;
 		$this->saveConfigToFile();
 	}
 	
-	private function getControllers()
+	public function getMenus($id)
+	{
+		$ret = array();
+		
+		$nav = $this->getNavbars();
+		
+		$selected = false;
+		
+		$ret[] = "None";
+		
+		foreach($this->getControllers() as $value)
+		{
+			if ($id<count($nav) && $value == $nav[$id] && $value['enabled'] && !$selected)
+			{
+				$ret[] = array('value'=>$value,'selected'=>'selected');
+				$selected = true;
+			}
+			else if ($value['enabled'])
+			{
+				$ret[] = $value;
+			}
+		}
+		
+		if (isset($this->config['routing']))
+		{
+			foreach($this->config['routing'] as $key => $array)
+			{
+				if ($id<count($nav) && $key == $nav[$id] && $array['enabled'] && !$selected)
+				{
+					$ret[] = array('value'=>$key,'selected'=>'selected');
+					$selected = true;
+				}
+				else if ($array['enabled'])
+				{
+					$ret[] = $key;
+				}
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getDebugSettings()
+	{
+		$ret = array();
+		
+		$ret[]		= array('checked' => $this->config['debugEnabled'],				'value'	=> 'debug',		'label' => 'Debug?');
+		$ret[]		= array('checked' => $this->config['debug']['mvc'],				'value' => 'debugMVC',	'label' => 'Show MVC-dump?');
+		$ret[]		= array('checked' => $this->config['debug']['db-num-queries'],	'value' => 'debugNQ',	'label' => 'Show number of database queries?');
+		$ret[]		= array('checked' => $this->config['debug']['db-queries'],		'value' => 'debugQ',	'label' => 'Show database queries?');
+		
+		return $ret;
+	}
+	
+	public function getDatabaseDrivers()
+	{
+		$ret = array();
+		
+		foreach($this->config['database']['drivers'] as $value)
+		{
+			if ($value==$this->config['database']['dbDriver'])
+			{
+				$ret[] = array('value' => $value, 'selected' => 'selected');
+			}
+			else
+			{
+				$ret[] = $value;
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getNavText($id)
+	{
+		$ret = null;
+		if (isset($this->config['navbar']))
+		{
+			$i = 0;
+			foreach($this->config['navbar'] as $key => $array)
+			{
+				if ($i==$id)
+				{
+					$ret = $array['text'];
+					break;
+				}
+				$i++;
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getNavbars()
+	{
+		$ret = array();
+		
+		if (isset($this->config['navbar']))
+		{
+			foreach($this->config['navbar'] as $key => $array)
+			{
+				if (isset($this->config['controllers'][$array['url']]) && $this->config['controllers'][$array['url']]['enabled'])
+				{
+					$ret[] = $this->config['controllers'][$array['url']]['class'];
+				}
+				else if (isset($this->config['routing'][$array['url']]) && $this->config['routing'][$array['url']]['enabled'])
+				{
+					$ret[] = $array['url'];
+				}
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getThemes()
+	{
+		$ret = array();
+		
+		if (isset($this->config['theme']['themes']))
+		{
+			foreach($this->config['theme']['themes'] as $themeName => $theme)
+			{
+				if ($this->config['theme']['path']==$theme['path'])
+				{
+					$ret[] = array('value' => $themeName, 'selected' => 'selected');
+				}
+				else
+				{
+					$ret[] = $themeName;
+				}
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getControllers()
 	{
 		$ret = array();
 		$tmp = new CMModules();
@@ -234,6 +371,90 @@ EOD;
 			if ($array['isController'])
 			{
 				$ret[] = $key;
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getTimezones()
+	{
+		$ret = array();
+		$regions = array(
+			'Africa' => DateTimeZone::AFRICA,
+			'America' => DateTimeZone::AMERICA,
+			'Antarctica' => DateTimeZone::ANTARCTICA,
+			'Asia' => DateTimeZone::ASIA,
+			'Atlantic' => DateTimeZone::ATLANTIC,
+			'Europe' => DateTimeZone::EUROPE,
+			'Indian' => DateTimeZone::INDIAN,
+			'Pacific' => DateTimeZone::PACIFIC
+		);
+
+		foreach ($regions as $name => $mask) {
+			foreach(DateTimeZone::listIdentifiers($mask) as $tz)
+			{
+				if (isset($this->config['timezone']) && $tz==$this->config['timezone'])
+				{
+					$ret[] = array('value'=>$tz, 'selected'=>'selected');
+				}
+				else
+					$ret[] = $tz;
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getActiveControllers()
+	{
+		$ret = array();
+		
+		foreach($this->getControllers() as $value)
+		{
+			$checked = '';
+			$url = '';
+			foreach($this->config['controllers'] as $key => $arr)
+			{
+				if ($arr['class']==$value && $arr['enabled'])
+				{
+					$url = $key;
+					$checked = true;
+					$ret[$value] = array(
+						'element'	=> new CFormElementCheckbox($value, array('label' => $value.'?', 'checked'=>$checked)),
+						'url'		=> $url,
+					);
+					break;
+				}
+			}
+		}
+		
+		return $ret;
+	}
+	
+	public function getInactiveControllers()
+	{
+		$ret = array();
+		
+		foreach($this->getControllers() as $value)
+		{
+			$checked = '';
+			$url = '';
+			foreach($this->config['controllers'] as $key => $arr)
+			{
+				if ($arr['class']==$value)
+				{
+					$url = $key;
+					$checked = $arr['enabled']?'checked':'';
+					break;
+				}
+			}
+			if ($checked=='')
+			{
+				$ret[$value] = array(
+					'element'	=> new CFormElementCheckbox($value, array('label' => $value.'?', 'checked'=>$checked)),
+					'url'		=> $url,
+				);
 			}
 		}
 		

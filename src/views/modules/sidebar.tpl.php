@@ -85,11 +85,22 @@
 </div>
 
 <div class='box'>
+<h4>Forms</h4>
+<ul>
+<?php foreach($modules as $module): ?>
+  <?php if($module['isForm']): ?>
+	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+  <?php endif; ?>
+<?php endforeach; ?>
+</ul>
+</div>
+
+<div class='box'>
 <h4>More modules</h4>
 <p>Modules that does not implement any specific Nocturnal interface.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'] || $module['isManageable'] || $module['isNocturnalExtra'])): ?>
+  <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'] || $module['isManageable'] || $module['isNocturnalExtra'] || $module['isForm'])): ?>
 	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>

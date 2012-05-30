@@ -12,11 +12,11 @@ function autoload($aClassName)
 	
 	$files = array();
 	
-	if (strpos($aClassName, 'CC')!==FALSE)
+	if (preg_match('/^CC[A-Z]/', $aClassName))
 	{
 		$files[] = MVC_SITE_PATH	. "/controllers/{$classFile}";
 		$files[] = $srcPath			. "/controllers/{$classFile}";
-	} else if (strpos($aClassName, 'CM')!==FALSE)
+	} else if (preg_match('/^CM[A-Z]/', $aClassName))
 	{
 		$files[] = MVC_SITE_PATH	. "/models/{$classFile}";
 		$files[] = $srcPath			. "/models/{$classFile}";
