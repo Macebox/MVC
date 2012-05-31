@@ -33,6 +33,10 @@ class CDatabase implements IDBDriver
 		{
 			$this->db = new CMysqli($host, $username, $password, $dbName);
 		}
+		else
+		{
+			$this->db = null;
+		}
 	}
 	
 	/**
@@ -96,6 +100,7 @@ class CDatabase implements IDBDriver
 		else
 		{
 			/*Error message*/
+			return array();
 		}
 	}
 	
