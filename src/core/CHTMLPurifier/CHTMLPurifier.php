@@ -16,7 +16,7 @@ class CHTMLPurifier
 	*
 	*/
 	
-	public static function Purify()
+	public static function Purify($text)
 	{
 		if(!self::$instance)
 		{
