@@ -113,6 +113,16 @@ class CSession
 	
 	public function GetMessages()
 	{
+		if (isset($this->data['flash']['messages']))
+		{
+			foreach($this->data['flash']['messages'] as $msg)
+			{
+				$this->flash['messages'][] = $msg;
+			}
+			
+			$this->data['flash']['messages'] = array();
+			$this->StoreInSession();
+		}
 		return isset($this->flash['messages']) ? $this->flash['messages'] : null;
 	}
 	

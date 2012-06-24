@@ -16,7 +16,7 @@ class CMUser extends CObject implements IModule, ArrayAccess
 		$profile = $this->session->GetAuthenticatedUser();
 		$this->profile = empty($profile) ? array() : $profile;
 		$this['isAuthenticated'] = empty($profile) ? false : true;
-		$this['isAuthenticated'] = $this->InGroup($this->config['CMUser-Groups']['user']['acronym']);
+		$this['isAuthenticated'] = $this->InGroup('user');
 		if(!$this['isAuthenticated'])
 		{
 			$this['id'] = 0;
@@ -99,21 +99,7 @@ class CMUser extends CObject implements IModule, ArrayAccess
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;", true);
 		
 		$dateTime = date('o-m-d H:i:s');
-		if (isset($this->config['CMUser-Groups']))
-		{
-			foreach($this->config['CMUser-Groups'] as $key => $val)
-			{
-				$exists = $this->database->Get('group','',array('acronym'=>$val['acronym']));
-				
-				if (empty($exists))
-				{
-					/*Create groups*/
-					$val['created'] = $dateTime;
-					$this->database->Insert('group',$val);
-					$this->session->AddMessage('notice', 'Successfully created a group: '.$val['acronym'].'.');
-				}
-			}
-		}
+		$this->SyncGroupsWithDatabase();
 		
 		$userExist = $this->database->Get('user','',array(
 			'acronym'	=>	$this->config['CMUser-Admin']['acronym'],
@@ -172,6 +158,32 @@ class CMUser extends CObject implements IModule, ArrayAccess
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Syncs configurated groups with database
+	 * 
+	 * 
+	 */
+	
+	public function SyncGroupsWithDatabase()
+	{
+		$dateTime = date('o-m-d H:i:s');
+		if (isset($this->config['CMUser-Groups']))
+		{
+			foreach($this->config['CMUser-Groups'] as $key => $val)
+			{
+				$exists = $this->database->Get('group','',array('acronym'=>$val['acronym']));
+				
+				if (empty($exists))
+				{
+					/*Create groups*/
+					$val['created'] = $dateTime;
+					$this->database->Insert('group',$val);
+					$this->session->AddMessage('notice', 'Successfully created a group: '.$val['acronym'].'.');
+				}
+			}
+		}
 	}
 	
 	/**
@@ -388,14 +400,82 @@ class CMUser extends CObject implements IModule, ArrayAccess
 	*
 	*/
 	
-	public function InGroup($groupAcronym)
+	public function InGroup($group)
 	{
-		if ($this['isAuthenticated'])
+		if ($this['isAuthenticated'] && isset($this->config['CMUser-Groups'][$group]))
 		{
-			return isset($this['groups'][$groupAcronym]);
+			return isset($this['groups'][$this->config['CMUser-Groups'][$group]['acronym']]);
 		}
 		
 		return FALSE;
+	}
+	
+	/**
+	* Reads all users from database
+	*
+	*
+	*/
+	
+	public function ReadAll()
+	{
+		return $this->database->Get('user');
+	}
+	
+	/**
+	* Gets user from database
+	* 
+	* @param Integer user id
+	*/
+	
+	public function GetUser($id)
+	{
+		$user = $this->database->Get('user','',array('id'=>$id));
+		
+		$user = isset($user[0])?$user[0] : null;
+		
+		if (!empty($user))
+		{
+			$tmpArray = $this->database->Get('user2group', array('idGroup'), array('idUser'=>$id));
+				
+			$user['groups'] = array();
+			
+			foreach($tmpArray as $key => $val)
+			{
+				$tmp = $this->database->Get('group','',array(
+					'id'	=> $val['idGroup'],
+					)
+				);
+				
+				$user['groups'][$tmp[0]['acronym']] = $tmp[0];
+			}
+			
+			return $user;
+		}
+		return null;
+	}
+	
+	/**
+	* Adds user to group
+	*
+	*
+	*/
+	
+	public function AddGroup($user, $group)
+	{
+		$dateTime = date('o-m-d H:i:s');
+		return $this->database->Insert('user2group', array('idUser' => $user, 'idGroup' => $group, 'created' => $dateTime));
+	}
+	
+	/**
+	* Removes user from group
+	*
+	*
+	*/
+	
+	public function RemoveGroup($user, $group)
+	{
+		$this->database->Delete('user2group', array('idUser' => $user, 'idGroup' => $group));
+		return true;
 	}
 	
 	/**

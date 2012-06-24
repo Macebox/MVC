@@ -87,7 +87,7 @@ function bbcode2html($text) {
     '<strong>$1</strong>',
     '<em>$1</em>',
     '<u>$1</u>',
-    '<img src="$1" />',
+    '<img style="max-width: 100%;" src="$1" />',
     '<a href="$1">$1</a>',
     '<a href="$1">$2</a>',
 	'<blockquote>$1</blockquote>',

@@ -22,11 +22,11 @@ class CCContent extends CObject implements IController
 	{
 		$content = new CMContent();
 		$this->views->SetTitle('Content Controller');
-		$admin = $this->user->InGroup($this->config['CMUser-Groups']['admin']['acronym'])?true:false;
+		$authorized = ($this->user->InGroup('admin')||$this->user->InGroup('contentmanager'))?true:false;
 		$this->views->AddView('content/index.tpl.php', array(
-			'contents'	=> $content->ListAll(null),
-			'admin'		=> $admin,
-			'user'		=> $this->user, 
+			'contents'		=> $content->ListAll(null),
+			'authorized'	=> $authorized,
+			'user'			=> $this->user, 
 			),
 		'primary'
 		);
@@ -100,26 +100,30 @@ class CCContent extends CObject implements IController
 		$form->SetValidation('title', array('not_empty'));
 		$form->SetValidation('key', array('not_empty'));
 		
-		$status = $form->Check();
-		if ($status === false)
+		if ($this->user->InGroup('admin'))
 		{
-			$this->session->AddMessage('notice', 'The form could not be processed.');
-			$this->RedirectToController("edit/{$id}");
-		}
-		else if ($status === true)
-		{
-			$this->RedirectToController("edit/{$id}");
+			$status = $form->Check();
+			if ($status === false)
+			{
+				$this->session->AddMessage('notice', 'The form could not be processed.');
+				$this->RedirectToController("edit/{$id}");
+			}
+			else if ($status === true)
+			{
+				$this->RedirectToController("edit/{$id}");
+			}
+		
 		}
 		
 		$title = isset($id) ? 'Edit' : 'Create';
 		
-		$admin = $this->user->InGroup($this->config['CMUser-Groups']['admin']['acronym'])?true:false;
+		$authorized = ($this->user->InGroup('admin')||$this->user->InGroup('contentmanager'))?true:false;
 		$this->views->SetTitle("{$title} content: {$id}");
 		$this->views->AddView('content/edit.tpl.php', array(
-			'user'		=> $this->user,
-			'content'	=> $content,
-			'form'		=> $form,
-			'admin'		=> $admin,
+			'user'			=> $this->user,
+			'content'		=> $content,
+			'form'			=> $form,
+			'authorized'	=> $authorized,
 			),
 		'primary'
 		);

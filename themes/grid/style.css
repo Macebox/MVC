@@ -100,8 +100,8 @@ blockquote {
   margin-left:1em;
   margin-bottom:1.375em;
 }
-strong, dfn { font-weight:bold; }
-em, dfn { font-style:italic; }
+strong, dfn, b { font-weight:bold; }
+em, dfn, i { font-style:italic; }
 pre {
   margin-bottom:1.375em;
   white-space:pre;
@@ -163,7 +163,7 @@ form textarea {
 textarea:hover { border:1px solid ; }
 input[readonly] { color:#666666; }
 label { font-size:smaller; }
-.validation-failed { border:2px solid red; }
+.validation-failed { border:1px solid red; }
 .validation-message {
   color:red;
   font-size:smaller;
@@ -475,3 +475,22 @@ a:focus {
 .codeComment { color:orange; }
 .codeKeyword { color:black; }
 .codeClassKeyword { color:magenta; }
+a.userButton {
+  float:left;
+  margin-right:20px;
+  border:1px solid transparent;
+  border-radius:10px;
+  text-decoration:none;
+}
+img.userButton { height:110px; }
+p.userButton {
+  text-align:center;
+  margin:0px;
+  padding:0px;
+  padding-top:5px;
+}
+a.userButton:hover { border:1px solid #ffe787; }
+button { font-size:smaller; }
+.active { color:#00ff00; }
+.inactive { color:#ff0000; }
+.no-border { border:none; }

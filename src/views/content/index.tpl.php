@@ -1,22 +1,34 @@
 <h2>Content Controller Index</h2>
-<p>One controller to manage the actions for content, mainly list, create, edit, delete, view.</p>
 
-<h3>All content</h3>
+<span class="smaller-text">
+
+<?=create_button(create_controller_url('create'), "<img src='".base_url('site/data/nocturnal/add.png')."' />Add Content")?>
+
 <?php if($contents != null):?>
-  <ul>
+  <table>
+  <tr><td>Actions:</td><td>Key:</td><td>By user:</td><td>Type:</td><td>Filter:</td><td>Created:</td><td>Active:</td></tr>
   <?php foreach($contents as $val):?>
-    <li><p<?php if($val['deleted']!=null) echo ' class="strike"';?>><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?><?php if($admin || $val['idUser']==$user['id']):?> <a href='<?=create_url("content/edit/{$val['id']}")?>'>edit</a><?php endif;?>&nbsp; <? if (!$val['deleted'] && $val['type']=='page'):?><a href="<?=create_url($val['key'])?>">view</a><? endif; ?></p></li>
+    <tr>
+	<td>
+	<? if ($authorized): ?>
+	<?=create_button(create_controller_url('edit/'.$val['id']),"<img src='".base_url('site/data/nocturnal/edit.png')."' />Edit")?>
+	<? endif; ?>
+	<?=create_button(create_url('page/view/'.$val['id']),"View")?>
+	</td>
+	<td><?=$val['key']?></td>
+	<td><?=$val['owner']?></td>
+	<td><?=$val['type']?></td>
+	<td><?=$val['filter']?></td>
+	<td><?=$val['created']?></td>
+	<td><?=(empty($val['deleted'])?'<span class="active">Yes</span>':'<span class="inactive">No</span>')?></td>
+	</tr>
   <?php endforeach; ?>
-</ul>
+</table>
 <?php else:?>
-  <p>No content exists.</p>
+  No content exists.
 <?php endif;?>
+  </span>
 
-<?php if($admin):?>
-
-<h4>Actions</h4>
-<ul>
-  <li><a href='<?=create_url('content/create')?>'>Create new content</a>
-</ul>
+<?php if($authorized):?>
 
 <?php endif; ?>

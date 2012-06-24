@@ -39,7 +39,22 @@ function get_debug()
 
 function render_views($region='default')
 {
-	return CNocturnal::Instance()->views->Render($region);
+	$mvc = CNocturnal::Instance();
+	$ret = $mvc->views->Render($region);
+	
+	if ($ret == FALSE
+	 && $region == $mvc->config['theme']['primary-region'])
+	{
+		$ret = <<<EOD
+	<h2>HTTP 404</h2>
+	<p>For one or another reason the content was not found.</p>
+EOD;
+	} else if ($ret==TRUE)
+	{
+		$ret = null;
+	}
+	
+	return $ret;
 }
 
 function region_has_content($region='default' /*...*/) {
@@ -78,6 +93,25 @@ function create_url($url, $type=null)
 }
 
 /**
+* Create controller url
+*/
+
+function create_controller_url($url, $type=null)
+{
+	$mvc = CNocturnal::Instance();
+	return $mvc->request->CreateUrl($mvc->request->controller.'/'.$url, $type);
+}
+
+/**
+* Create button url
+*/
+
+function create_button($url, $text)
+{
+	return '<button onclick=\'javascript:location.href="'.$url.'"\'>'.$text.'</button>';
+}
+
+/**
  * Create HTML for a navbar.
  */
 function getHTMLForNavigation($id)
@@ -86,12 +120,21 @@ function getHTMLForNavigation($id)
 	$p = $mvc->request->controller;
 	$m = $mvc->request->method;
 	$a = $mvc->request->arguments;
+	$doneSelecting = false;
 	foreach($mvc->config['navbar'] as $key => $item)
 	{
-		$selected = ($p == $item['url'] || $mvc->request->routing==$item['url']) ? " class='selected'" : null;
+		$selected = null;
+		if (!$doneSelecting)
+		{
+			$selected = ($p == $item['url'] || $mvc->request->routing==$item['url']) ? " class='selected'" : null;
+			if ($selected!=null)
+			{
+				$doneSelecting = true;
+			}
+		}
 		@$html .= "<a href='{$mvc->request->CreateUrl($item['url'])}'{$selected}>{$item['text']}</a>\n";
 	}
-	return "<nav id='$id'>\n{$html}</nav>\n";
+	return "<div id='$id'>\n{$html}</div>\n";
 }
 
 /*
@@ -135,7 +178,7 @@ function login_menu()
 	{
 		$items = "<img src='".get_gravatar(15)."'>";
 		$items .= "<a href='" . create_url('user/profile') . "'>" . $mvc->user->GetAcronym() . "</a> ";
-		if($mvc->user->InGroup($mvc->config['CMUser-Groups']['admin']['acronym']))
+		if($mvc->user->InGroup('admin'))
 		{
 			$items .= "<a href='" . create_url('acp') . "'>acp</a> ";
 		}

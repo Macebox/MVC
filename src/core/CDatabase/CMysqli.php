@@ -40,7 +40,7 @@ class CMysqli implements IDBDriver
 				{
 					$columnsSelected = $this->db->real_escape_string(implode(', ', $columns));
 				}
-				$query = 'SELECT '.($distinct?' DISTINCT ':'').$columnsSelected.' FROM '.$this->dbName.'.'.$table;
+				$query = 'SELECT '.($distinct?' DISTINCT ':'').$columnsSelected.' FROM `'.$this->dbName.'`.`'.$table.'`';
 				if (count($equals)>0)
 				{
 					$query .= ' WHERE '.$this->getEquals($equals);
@@ -245,7 +245,7 @@ class CMysqli implements IDBDriver
 								$subval = "='".$this->db->real_escape_string($subval)."'";
 							}
 						}
-						$eq .= $this->db->real_escape_string($subcol)."{$subval} OR ";
+						$eq .= '`'.$this->db->real_escape_string($subcol)."`{$subval} OR ";
 					}
 				}
 				$eq = substr($eq, 0, strlen($eq)-4).')';
@@ -271,7 +271,7 @@ class CMysqli implements IDBDriver
 						$value = "='".$this->db->real_escape_string($value)."'";
 					}
 				}
-				$eq = $this->db->real_escape_string($col)."{$value}";
+				$eq = '`'.$this->db->real_escape_string($col)."`{$value}";
 			}
 			$query .= $eq.' AND ';
 		}

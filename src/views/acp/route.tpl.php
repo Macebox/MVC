@@ -1,0 +1,1 @@
+<? if(!$user->InGroup('admin')): ?><h2>You are not authorized to view this content.</h2><? else: ?><a href="<?=create_controller_url('index')?>">ACP</a> > Routes<h2>Route manager</h2><?=$form?><p class="smaller-text">*If trigger address is not set the route will be removed.</p><? endif;?>

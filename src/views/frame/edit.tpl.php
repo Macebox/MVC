@@ -1,0 +1,1 @@
+<? if(!$user->InGroup('admin')): ?><h2>You are not authorized to view this content.</h2><? else: ?><h2><?=$title?> frame</h2><?=$form?><? endif; ?>

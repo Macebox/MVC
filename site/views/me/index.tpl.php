@@ -1,10 +1,5 @@
 <h2>Om mig själv</h2>
 
-<figure class="right top" style="width: auto;">
-<img src="<?=CNocturnal::Instance()->request->GetBaseUrl()?>site/data/me/do_all_work.png" alt="Do all work?" style="width: 213; height: 240;"/>
-<figcaption>Do all the work?</figcaption>
-</figure>
-
 <p>Mitt namn är Marcus Olsson och jag är studerande vid BTH sen 2011, just nu är en av kurserna phpmvc.</p>
 <p>Jag jobbar sedan 2008 på McDonalds Vedeby i Karlskrona-området, som deltidsanställd. Alltså under hela min gymnasietid på teknik-programmet i Karlskrona.
 </p>

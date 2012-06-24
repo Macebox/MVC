@@ -1,3 +1,9 @@
+<? if(!$authorized):?>
+
+<h2>You are not authorized to view this content.</h2>
+
+<? else: ?>
+
 <?php if($content['created']): ?>
   <h2>Edit Content</h2>
   <p>You can edit and save this content.</p>
@@ -21,3 +27,5 @@
 <?php endif; ?>
 </em>
 </p>
+
+<? endif; ?>

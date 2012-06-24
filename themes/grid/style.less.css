@@ -155,7 +155,7 @@ textarea:hover
 }
 input[readonly]{color:#666;}
 label{font-size:smaller;}
-.validation-failed{border:2px solid red;}
+.validation-failed{border:1px solid red;}
 .validation-message{color:red;font-size:smaller;}
 .form-action-link{font-size:smaller;}
 
@@ -407,3 +407,30 @@ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
 {
 	color: magenta;
 }
+
+a.userButton {
+  float: left;
+  margin-right:20px;
+  border:1px solid transparent;
+  border-radius:10px;
+  text-decoration: none;
+}
+
+img.userButton{
+  height: 110px;
+}
+
+p.userButton {
+  text-align:center;
+  margin:0px;
+  padding:0px;
+  padding-top:5px;
+}
+a.userButton:hover { border:1px solid @color; }
+
+button {.smaller-text; }
+
+.active { color: #00FF00; }
+.inactive { color: #FF0000; }
+
+.no-border {border: none;}

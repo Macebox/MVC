@@ -65,10 +65,20 @@ class CFormElement implements ArrayAccess{
       return "<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled}{$onclick} />\n";	
     }
 	else if($type && $this['type'] == 'textarea') {
-		return "<p><label for='$id'>$label</label><br><textarea {$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
+		$ret = "";
+		if (!empty($label))
+		{
+			$ret = "<label for='$id'>$label</label><br>";
+		}
+		return "<p>$ret<textarea {$type}{$class}{$name}{$autofocus}{$readonly}{$disabled}>{$this['value']}</textarea></p>\n";
 	}
 	else if($type && $this['type'] == 'select') {
-		$ret = "<p><label for='$id'>$label</label><br><select {$class}{$name}>";
+		$ret = "";
+		if (!empty($label))
+		{
+			$ret = "<label for='$id'>$label</label><br>";
+		}
+		$ret = "<p>$ret<select {$class}{$name}>";
 		
 		if (isset($this['options']) && is_array($this['options']))
 		{
@@ -85,7 +95,11 @@ class CFormElement implements ArrayAccess{
 	}
 	else if($type && $this['type'] == 'checkboxgroup')
 	{
-		$ret = "<p><label for='$id'>$label</label><br></p>";
+		$ret = "";
+		if (!empty($label))
+		{
+			$ret = "<p><label for='$id'>$label</label><br></p>";
+		}
 		
 		if (isset($this['options']) && is_array($this['options']))
 		{
@@ -114,10 +128,20 @@ class CFormElement implements ArrayAccess{
 	} else if ($type && $this['type']=='checkbox')
 	{
 		$checked = (isset($this['checked']) && $this['checked'])?" checked='checked'":null;
-		return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled}{$checked} />{$messages}</p>\n";			  
+		$ret = "";
+		if (!empty($label))
+		{
+			$ret = "<label for='$id'>$label</label><br>";
+		}
+		return "<p>$ret<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled}{$checked} />{$messages}</p>\n";			  
 	}
 	else {
-      return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />{$messages}</p>\n";			  
+	  $ret = "";
+	  if (!empty($label))
+	  {
+		$ret = "<label for='$id'>$label</label><br>";
+	  }
+      return "<p>$ret<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly}{$disabled} />{$messages}</p>\n";			  
     }
   }
 
@@ -197,6 +221,21 @@ class CFormElementText extends CFormElement {
     parent::__construct($name, $attributes);
     $this['type'] = 'text';
 	$this['class'] = 'text';
+    $this->UseNameAsDefaultLabel();
+  }
+}
+
+class CFormElementFile extends CFormElement {
+  /**
+   * Constructor
+   *
+   * @param string name of the element.
+   * @param array attributes to set to the element. Default is an empty array.
+   */
+  public function __construct($name, $attributes=array()) {
+    parent::__construct($name, $attributes);
+    $this['type'] = 'file';
+	$this['class'] = 'file';
     $this->UseNameAsDefaultLabel();
   }
 }
@@ -435,15 +474,16 @@ class CForm implements ArrayAccess {
     $class 	= isset($this->form['class'])   ? " class='{$this->form['class']}'" : null;
     $name 	= isset($this->form['name'])    ? " name='{$this->form['name']}'" : null;
     $action = isset($this->form['action'])  ? " action='{$this->form['action']}'" : null;
+	$enctype = isset($this->form['enctype'])  ? " enctype='{$this->form['enctype']}'" : null;
     $method = " method='post'";
 
     if($type == 'form') {
-      return "<form{$id}{$class}{$name}{$action}{$method}>";
+      return "<form{$id}{$enctype}{$class}{$name}{$action}{$method}>";
     }
     
     $elements = $this->GetHTMLForElements();
     $html = <<< EOD
-\n<form{$id}{$class}{$name}{$action}{$method}>
+\n<form{$id}{$enctype}{$class}{$name}{$action}{$method}>
 <fieldset>
 {$elements}
 </fieldset>

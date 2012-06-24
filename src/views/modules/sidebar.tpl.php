@@ -3,7 +3,7 @@
 <p>All Nocturnal modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
-  <a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+  <a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
 <?php endforeach; ?>
 </ul>
 </div>
@@ -15,7 +15,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isNocturnalCore']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -28,7 +28,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isNocturnalCMF']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -41,7 +41,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isNocturnalExtra']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -53,7 +53,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isModel']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -66,7 +66,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isController']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -78,7 +78,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isManageable']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -89,7 +89,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if($module['isForm']): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>
@@ -101,7 +101,7 @@
 <ul>
 <?php foreach($modules as $module): ?>
   <?php if(!($module['isController'] || $module['isNocturnalCore'] || $module['isNocturnalCMF'] || $module['isManageable'] || $module['isNocturnalExtra'] || $module['isForm'])): ?>
-	<a href="<?=create_url("modules/view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
+	<a href="<?=create_controller_url("view/{$module['name']}")?>"><li><?=$module['name']?></li></a>
   <?php endif; ?>
 <?php endforeach; ?>
 </ul>

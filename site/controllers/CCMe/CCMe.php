@@ -16,5 +16,7 @@ class CCMe extends CObject implements IController
 		
 		$this->views->AddView('me/index.tpl.php', array(),'primary');
 		
+		$this->views->AddView('me/sidebar.tpl.php', array(), 'sidebar');
+		
 	}
 }
